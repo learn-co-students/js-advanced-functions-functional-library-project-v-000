@@ -56,6 +56,16 @@ const fi = (function() {
       return counter;
     },
 
+    first: function(array, n = 1) {
+      const newArray = array.slice(0,n);
+      return newArray.length < 2 ? newArray[0] : newArray;
+    },
+
+    last: function(array, n = 1) {
+      const newArray = array.slice(-n);
+      return newArray.length < 2 ? newArray[0] : newArray;
+    },
+
     functions: function() {
 
     },
