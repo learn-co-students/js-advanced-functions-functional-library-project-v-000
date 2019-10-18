@@ -61,7 +61,7 @@ describe('index.js', function () {
   })
 
   describe('reduce', function () {
-    const testArr = unmodifileedTestArr.slice() // arr is [1, 2, 3, 4]
+    const testArr = unmodifiedTestArr.slice() // arr is [1, 2, 3, 4]
     const callback = (acc, val, collection) => (acc + (val * 3))
 
     it('returns the correct reduced value when passed an accumulator', function () {

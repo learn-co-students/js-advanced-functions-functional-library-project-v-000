@@ -20,10 +20,40 @@ const fi = (function() {
     },
 
     reduce: function(collection, callback, acc) {
-      for (const i in collection) {
+      for (let i = 0; i < collection.length; i++) {
+        if (acc === undefined) {
+          acc = collection[0];
+          i++;
+        }
         acc = callback(acc, collection[i], collection);
       }
       return acc;
+    },
+
+    find: function(collection, predicate) {
+      for (const i in collection) {
+        if (!!predicate(collection[i])){
+          return collection[i];
+        }
+      }
+    },
+
+    filter: function(collection, predicate) {
+      const newCollection = [];
+      for (const i in collection) {
+        if (!!predicate(collection[i])) {
+          newCollection.push(collection[i]);
+        }
+      }
+      return newCollection;
+    },
+
+    size: function(collection) {
+      let counter = 0
+      for (const i in collection) {
+        counter++;
+      }
+      return counter;
     },
 
     functions: function() {
