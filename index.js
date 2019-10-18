@@ -102,6 +102,22 @@ const fi = (function() {
       return newArray;
     },
 
+    uniq: function(array, isSorted, callback=(x) => x ) {
+      const newArray = [];
+      for (const i of array) {
+        let counter = 0;
+        for (const n of newArray) {
+          if (callback(n) === callback(i)) {
+            counter++
+          }
+        }
+        if (counter < 1) {
+          newArray.push(i)
+        }
+      }
+      return newArray;
+    },
+
     functions: function() {
 
     },
