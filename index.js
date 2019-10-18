@@ -68,12 +68,12 @@ const fi = (function() {
 
     compact: function(array) {
       const newArray = [];
-      for (let i of array) {
-        if (i !== false) {
+      for (const i of array) {
+        if (!!i) {
           newArray.push(i);
         }
       }
-      return i;
+      return newArray;
     },
 
     functions: function() {
