@@ -118,11 +118,31 @@ const fi = (function() {
       return newArray;
     },
 
-    functions: function() {
-
+    keys: function(obj) {
+      const keyList = [];
+      for (const i in obj) {
+        keyList.push(i);
+      }
+      return keyList;
     },
 
+    values: function(obj) {
+      const valueList = [];
+      for (const i in obj) {
+        valueList.push(obj[i]);
+      }
+      return valueList;
+    },
 
+    functions: function(obj) {
+      const functionList = [];
+      for (const i in obj) {
+        if (typeof obj[i] === 'function') {
+          functionList.push(i);
+        }
+      }
+      return functionList;
+    },
   }
 })()
 
