@@ -66,6 +66,16 @@ const fi = (function() {
       return newArray.length < 2 ? newArray[0] : newArray;
     },
 
+    compact: function(array) {
+      const newArray = [];
+      for (let i of array) {
+        if (i !== false) {
+          newArray.push(i);
+        }
+      }
+      return i;
+    },
+
     functions: function() {
 
     },
