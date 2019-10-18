@@ -77,7 +77,29 @@ const fi = (function() {
     },
 
     sortBy: function(array, callback) {
+      const newArray = [...array];
+      return newArray.sort((a, b) => (callback(a) > callback(b) ? 1 : -1));
+    },
 
+    flatten: function(array, shallow) {
+      const newArray = [];
+      for (const i of array) {
+        if (Array.isArray(i)){
+          if (shallow === true) {
+            for (const n of i) {
+              newArray.push(n)
+            }
+          } else {
+            let result = this.flatten(i);
+            for (const n of result) {
+              newArray.push(n);
+            }
+          }
+        } else {
+          newArray.push(i);
+        }
+      }
+      return newArray;
     },
 
     functions: function() {
