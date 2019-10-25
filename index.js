@@ -119,7 +119,7 @@ const fi = (function() {
     last: function (collection, n = false) {
       //  you want it to show that last n value put in . So if you say N should be 2
       //  it gonna only show the last 2 element in the collection
-      return n ? collection.slice(collection.length-n , collection.length) :  collection[collection.length-1]
+      return n ? collection.slice(collection.length - n , collection.length) :  collection[collection.length-1]
 
     },
 
@@ -131,7 +131,7 @@ const fi = (function() {
     },
 
 
-    sortby: function (collection, callback) {
+    sortBy: function (collection, callback) {
        
       let newSort = [...collection]
       return newSort.sort(function (a, b) {
@@ -142,14 +142,19 @@ const fi = (function() {
         })
     },
 
+  
 
 
-    flatten: function () {
-    
-    },
+    // flatten: function (array, n = true) {
+    //   let newArray = [...array]
+    //   return newArray.flatten()
+    // },
 
 
-    uniq: function () {
+    uniq: function (sampleValues) {
+    const uniqueValues = [...new Set(sampleValues)]; 
+      // console.log(uniqueValues);
+      return uniqueValues
     
     },
 
