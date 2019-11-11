@@ -133,7 +133,7 @@ const fi = (function() {
 
     },
 
-    uniq: function(array, isSorted, cb) {
+    uniq: function(array, isSorted = false, cb = false) {
 
       const sortArr = [...array];
 
@@ -141,17 +141,19 @@ const fi = (function() {
         return self.indexOf(element) === index;
       }
 
-      if (!(cb === undefined)) {
+      if (cb) {
+        const modVals = new Set();
+        const uniqVals = new Set();
 
-        const cbArr = [];
-
-        for (let element of sortArr) {
-          if (!(cb(element) === 0)) {
-            cbArr.push(element);
+        for (let elem of array) {
+          const modElement = cb(elem);
+          if (!modVals.has(modElement)) {
+            modVals.add(modElement);
+            uniqVals.add(elem);
           }
         }
 
-        return cbArr.filter(uniqueArr);
+        return Array.from(uniqVals);
       }
 
       return sortArr.filter(uniqueArr);
