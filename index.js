@@ -40,23 +40,66 @@ const fi = (function() {
      return acc
     },
 
-    find: function(element, array) {
+    find: function(collection, predicate) {
       // const newArray = (array instanceof Array) ? array.slice() : Object.values(array)
-      // if (!(array instanceof Array))
-      //   array = Object.values(array)
+      if (!(collection instanceof Array)) {
+        collection = Object.values(collection)
+      }
 
-      // for (let index = 0; index < array.length; index++) 
-      //   if (element(array[index])) return array[index]
+      for (let index = 0; index < collection.length; index++) 
+        if (predicate(collection[index])) {
+            return collection[index]
+          }
  
-      // return undefined
+      return undefined
     },
 
-    // functions: function() {
+    filter: function(collection, predicate) {
+      if (!(collection instanceof Array)) {
+        collection = Object.values(collection)
+      }
 
-    // },
+      const anotherCollection = [];
 
+      for (let i = 0; i < collection.length; i++) {
+        if (predicate(collection[i])){
+         anotherCollection.push(collection[i]);
+        }
+      }
+      return anotherCollection;
+    },
 
+    size: function(collection) {
+      return (collection instanceof Array) ? collection.length :
+        Object.keys(collection).length  
+    },
+
+    first: function(array, n = false) {
+    // if there is not a parameter, it returns the first element 
+    // if there is a paramater, it returns the all of the elements up to the index from the parameter
+    
+    return (n) ? array.slice(0, n) : array[0]
+    },
+    
+    last: function(array, n = false) {
+      return (n) ? array.slice(array.length-n, array.length) : array[array.length-1]
+    },
+
+    compact: function(array) {
+      let collection = array.slice();
+
+      for (let i = 0; i < collection.length; i++){
+        if (collection[i] === false) {
+          collection.splice(collection[i])
+        }
+        return collection
+      }
+    },
   }
 })()
 
 fi.libraryMethod()
+
+// functions: function() {
+
+    // },
