@@ -32,21 +32,92 @@ const fi = (function() {
       return result;
     },
 
-    reduce: function(collection, cb, initial) {
-      if (!initial) {
-        initial = collection[0];
+    reduce: function(collection, cb, acc) {
+      if (!acc) {
+        acc = collection[0];
         collection = collection.slice(1);
       }
 
       for (const value of collection) {
-        initial = cb(initial, value, collection);
+        acc = cb(acc, value, collection);
       }
 
-      return initial;
+      return acc;
     },
 
-    functions: function() {
+    find: function(collection, cb) {
+      if (!(collection instanceof Array)) {
+        collection = Object.values(collection);
+      }
 
+      for (let i = 0; i < collection.length; i++) {
+        if (cb(collection[i])) return collection[i];
+      }
+      return undefined;
+    },
+
+    filter: function(collection, cb) {
+      const result = [];
+      for (const value of collection) {
+        if (cb(value)) result.push(value);
+      }
+      return result;
+    },
+
+    size: function(collection) {
+      if (!(collection instanceof Array)) {
+        collection = Object.values(collection);
+      }
+      return collection.length;
+    },
+
+    first: function(collection, n) {
+      return (n) ? collection.slice(0, n) : collection[0];
+    },
+
+    last: function(collection, n) {
+      return (n) ? collection.slice(collection.length - n) : collection[collection.length - 1];
+    },
+
+    compact: function(collection) {
+      const result = [];
+
+      for (const element of collection.slice()) {
+        if (!!element) result.push(element);
+      }
+      return result;
+    },
+
+    sortBy: function(collection, cb) {
+      const newArr = collection.slice();
+      return newArr.sort((a, b) => cb(a) - cb(b));
+    },
+
+    keys: function(obj) {
+      const keys = [];
+
+      for (const key in obj) {
+        keys.push(key);
+      }
+      return keys;
+    },
+
+    values: function(obj) {
+      const values = [];
+
+      for (const key in obj) {
+        values.push(obj[key]);
+      }
+      return values;
+    },
+
+    functions: function(obj) {
+      const result = [];
+
+      for (const key in obj) {
+        if (typeof obj[key] === 'function') result.push(key);
+      }
+      return result.sort();
     },
 
 
