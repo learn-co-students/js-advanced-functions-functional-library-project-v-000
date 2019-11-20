@@ -89,7 +89,7 @@ const fi = (function() {
       let collection = array.slice();
 
       for (let i = 0; i < collection.length; i++){
-        if (collection[i] === false) {
+        if (collection[i] !== false) {
           collection.splice(collection[i])
         }
         return collection
