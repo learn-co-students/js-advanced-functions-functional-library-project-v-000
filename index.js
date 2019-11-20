@@ -86,15 +86,14 @@ const fi = (function() {
     },
 
     compact: function(array) {
-      let collection = array.slice();
-
-      for (let i = 0; i < collection.length; i++){
-        if (collection[i] !== false) {
-          collection.splice(collection[i])
-        }
-        return collection
-      }
+      const falseElements = new Set([false, null, 0, "", undefined, NaN]);
+      return array.filter(el => !falseElements.has(el));
     },
+
+    sortby: function(array, callback) {
+      let newCollection = [...array];
+      
+    }
   }
 })()
 
