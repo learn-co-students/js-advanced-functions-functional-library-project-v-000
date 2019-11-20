@@ -90,10 +90,23 @@ const fi = (function() {
       return array.filter(el => !falseElements.has(el));
     },
 
-    sortby: function(array, callback) {
-      let newCollection = [...array];
+    sortBy: function(array, callback) {
+      let newCollection = [...array]
       
-    }
+      newCollection.sort(function (a, b) {
+        return callback(a) - callback(b);
+      });
+      return newCollection;
+    },
+
+    flatten: function(array, shallow = true) {
+      // console.log(array); 
+      if (shallow){
+        
+      }
+      return array;
+    },
+
   }
 })()
 
@@ -101,4 +114,4 @@ fi.libraryMethod()
 
 // functions: function() {
 
-    // },
+    // }, 
