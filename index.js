@@ -99,12 +99,23 @@ const fi = (function() {
       return newCollection;
     },
 
-    flatten: function(array, shallow = true) {
+    flatten: function(array, shallow = false) {
       // console.log(array); 
+      let newArray = [];
       if (shallow){
-        
+        // newArray = array.reduce(function(prev, curr) {
+        //   console.log(prev.concat(curr));
+        //   return prev.concat(curr);
+        for (let i = 0; i < array.length; i++) {
+          for (let j = 0; j < array[i].length; j++)
+            newArray.push(array[i][j]);
+        }
+      } else {
+        for (let i = 0; i < array.length; i++) {
+          newArray.push(array[i])
+        }
       }
-      return array;
+      return newArray;
     },
 
   }
