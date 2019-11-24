@@ -148,74 +148,53 @@ const fi = (function() {
         return arrayCopy;
     },
 
-    flatten: function(array, shallow) {
-      if(!!shallow) {
-        return array.flat();
+    flatten: function(collection, bol = false) {
+      if(bol){
+        return collection.flat()
+      }else{
+        return collection.flat(Infinity)
       }
-      return array.flat().flat().flat();
     },
 
+    uniq: function(collection, isSorted, callback = (x) => x ) {
+      const uniqueCollection = [];
 
+      for (const i of collection) {
+        let counter = 0;
+        for (const n of uniqueCollection) {
+          if (callback(n) === callback(i)) {
+            counter++;
+          };
+        };
+        if (counter < 1) {
+          uniqueCollection.push(i);
+        };
+      };
 
-    functions: function() {
-      
+      return uniqueCollection;
     },
 
+    keys: function(obj) {
+      let arr = Object.keys(obj)
+      arr.sort((a, b) => (a) - (b))
+      return arr
+    },
 
+    values: function(obj) {
+      let arr = Object.values(obj)
+      arr.sort((a, b) => (a) - (b))
+      return arr
+    },
+
+    functions: function(obj) {
+      const result = [];
+
+      for (const key in obj) {
+        if (typeof obj[key] === 'function') result.push(key);
+      }
+      return result.sort();
+    },
   }
 })()
 
 fi.libraryMethod() // returns the object we created above
-
-
-// Pseudocode this bitch:
-
-// you get some absurdly nested array that you want to flatten into a single array
-// start off by describing what is going on:
-
-// we are going to be going over every element of the array and applying the same logic:
-// let absurdArray = [1, [2], [3, [[4]]]];
-
-// let arrayCopy = array.slice();
-// let flatterArray = [];
-
-// let workingValue = arrayCopy.shift();
-
-// if(!Array.isArray(workingValue)) {
-//   flatterArray.push(workingValue);
-// }
-// if(!!Array.isArray(workingValue)) {
-//   workingValue = arrayCopy.shift();
-
-// }
-
-    // function runCollection(array) {
-    //   let flatterArray = [];
-
-    //   for(let i = 0; i < array.length; i++) {
-    //     if(!!Array.isArray(array[i]) === false) {
-    //       flatterArray.push()
-    //     };
-    //   };
-    // };
-// *****  is this element an array?  ******
-
-// no? oh well then lets get rid of you. and we call shift on the array and push that element into 
-// the flatterArray we are collecting as a return value. 
-
-// *** Oh, on to the next one! ***
-
-// yes?it's an array you say? ok, then we are going to have to look into every element then.
-
-//
-
-// function processArray(array) {
-//   for (let i = 0; i < array.length; i++) {
-//     if(!Array.isArray(array[i])) {
-//       flatterArray.push(array[i]);
-//     };
-//     if(!!Array.isArray(array[i])) {
-//       processArray(array)
-//     }
-//   };
-// };
