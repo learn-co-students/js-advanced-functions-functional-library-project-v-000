@@ -118,6 +118,29 @@ const fi = (function() {
       return newArray;
     },
 
+    uniq: function(array, isSorted = false, callback = false) {
+
+      isSorted ? array = array.sort() : array
+      // iterate over the array
+      // call the callback function on each element of the array - for loop
+      // iteration exists outside of callback function
+
+      if (callback) {
+        for (let i = 0; i < array.length; i++) {
+          array.push(callback(array[i]))
+          return array;
+        }
+        
+      } 
+
+      return array.filter((item, index) => {
+        console.log(item, index, array.indexOf(item), array.indexOf(item) === index);
+      return array.indexOf(item) === index
+      })
+
+    }
+    
+
   }
 })()
 
