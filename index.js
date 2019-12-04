@@ -126,8 +126,10 @@ const fi = (function() {
       // iteration exists outside of callback function
 
       if (callback) {
+        
         for (let i = 0; i < array.length; i++) {
           array.push(callback(array[i]))
+          debugger
           return array;
         }
         
