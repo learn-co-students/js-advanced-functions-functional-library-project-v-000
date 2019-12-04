@@ -132,14 +132,38 @@ const fi = (function() {
           debugger
           return array;
         }
-        
       } 
 
       return array.filter((item, index) => {
         console.log(item, index, array.indexOf(item), array.indexOf(item) === index);
       return array.indexOf(item) === index
       })
+    },
 
+    keys: function(object) {
+      let keys = [];
+      for (let key in object) {
+        keys.push(key)
+      }
+      return keys
+    },
+
+    values: function(object) {
+      let values = [];
+      for (let key in object) {
+        values.push(object[key])
+      }
+      return values
+    },
+
+    functions: function(object) {
+      const functionNames = [];
+      for (let key in object) {
+        if (typeof object[key] === "function") {
+          functionNames.push(key)
+        }
+      }
+      return functionNames.sort()
     }
     
 
@@ -148,6 +172,4 @@ const fi = (function() {
 
 fi.libraryMethod()
 
-// functions: function() {
-
-    // }, 
+ 
