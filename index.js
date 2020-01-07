@@ -44,6 +44,23 @@ const fi = (function() {
 
     },
 
+    find: function(collection, predicate) {
+      for (const element of collection) {
+        if (predicate(element)){
+          return element;
+        }
+      }
+    },
+
+    filter: function(collection, condition) {
+      let newArray = [];
+      for (const element of collection) {
+        if (condition(element)) {
+          newArray.push(element);
+        }
+      }
+      return newArray;
+    },
 
   }
 })()
