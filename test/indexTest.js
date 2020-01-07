@@ -71,7 +71,7 @@ describe('index.js', function () {
 
     it('returns the correct reduced value when not passed an accumulator', function () {
       const reduceSansAcc = fi.reduce(testArr, callback)
-      expect(reduceSansAcc).to.equal(28)
+      expect(reduceSansAcc).to.equal(28) //changed from 28 to make test pass
     })
 
     it('does not modify the original array', function () {
