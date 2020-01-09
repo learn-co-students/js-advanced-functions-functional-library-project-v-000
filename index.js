@@ -62,6 +62,56 @@ const fi = (function() {
       return newArray;
     },
 
+    size: function(object) {
+      return Object.keys(object).length;
+    },
+
+    first: function(collection, number = 1) {
+      if (number === 1) {
+        return collection[0];
+      }
+      collection.splice(number);
+      return collection;
+    },
+
+    last: function(collection, number = 1) {
+      if (number === 1) {
+        return collection[collection.length - 1];
+      }
+      return collection.splice(-number);
+    },
+
+    compact: function(collection) {
+      let newArray = [];
+      for (const element of collection) {
+        if (element) {
+          newArray.push(element)
+        }
+      }
+      return newArray;
+    },
+
+    sortBy: function(collection, condition) {
+      let collectionCopy = collection.slice();
+      if (typeof(collectionCopy[0]) == "string") {
+        return collectionCopy.sort();
+      } else {
+        return collectionCopy.sort(function(a, b){return condition(a) - condition(b)});
+      }
+    },
+
+    flatten: function(collection, condition = false) {
+      if (condition == false) {
+        return collection.flat(Infinity);
+      } else {
+        return collection.flat();
+      }
+    },
+
+    uniq: function() {
+      
+    }
+
   }
 })()
 
