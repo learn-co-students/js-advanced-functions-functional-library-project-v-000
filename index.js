@@ -40,8 +40,14 @@ const fi = (function() {
       return accumulator;
     },
 
-    functions: function() {
-
+    functions: function(object) {
+      let newCollection = [];
+      for (const element of fi.values(object)) {
+        if (typeof element === "function") {
+          newCollection.push(element);
+        }
+      }
+      return newCollection;
     },
 
     find: function(collection, predicate) {
@@ -108,8 +114,32 @@ const fi = (function() {
       }
     },
 
-    uniq: function() {
-      
+    uniq: function(collection, isSorted, callback) {
+      let newCollection = [];
+      if (callback) {
+        let callbackCollection = [];
+        for (const element of collection) {
+          if (!callbackCollection.includes(callback(element))) {
+            newCollection.push(element);
+          }
+          callbackCollection.push(callback(element))
+        }
+      } else {
+        for (const element of collection) {
+          if (!newCollection.includes(element)) {
+            newCollection.push(element);
+          }
+        }
+      }
+      return newCollection;
+    },
+
+    keys: function(object) {
+      return Object.keys(object);
+    },
+
+    values: function(object) {
+      return Object.values(object);
     }
 
   }
