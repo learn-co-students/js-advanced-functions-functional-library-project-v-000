@@ -6,25 +6,25 @@ const fi = (function() {
       return 'Start by reading https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0'
     },
 
-    each: function(collection, iteratee) {
+    each: function(collection, iterations) {
       const newCollection = (collection instanceof Array) ? collection.slice() : Object.values(collection)
 
-      for (let idx = 0; idx < newCollection.length; idx++)
-        iteratee(newCollection[idx])
+      for (let item = 0; item < newCollection.length; item++)
+        iterations(newCollection[item])
 
       return collection
     },
 
-    map: function(collection, iteratee) {
+    map: function(collection, iterations) {
       if (!(collection instanceof Array))
         collection = Object.values(collection)
 
-      const newArr = []
+      const myArray = []
 
-      for (let idx = 0; idx < collection.length; idx++)
-        newArr.push(iteratee(collection[idx]))
+      for (let item = 0; item < collection.length; item++)
+        myArray.push(iterations(collection[item]))
 
-      return newArr
+      return myArray
     },
 
 
@@ -48,8 +48,8 @@ const fi = (function() {
       if (!(collection instanceof Array))
         collection = Object.values(collection)
 
-      for (let idx = 0; idx < collection.length; idx++)
-        if (predicate(collection[idx])) return collection[idx]
+      for (let item = 0; item < collection.length; item++)
+        if (predicate(collection[item])) return collection[item]
 
       return undefined
     },
@@ -58,12 +58,12 @@ const fi = (function() {
       if (!(collection instanceof Array))
         collection = Object.values(collection)
 
-      const newArr = []
+      const myArray = []
 
-      for (let idx = 0; idx < collection.length; idx++)
-        if (predicate(collection[idx])) newArr.push(collection[idx])
+      for (let item = 0; item < collection.length; item++)
+        if (predicate(collection[item])) myArray.push(collection[item])
 
-      return newArr
+      return myArray
     },
 
     size: function(collection) {
@@ -84,8 +84,8 @@ const fi = (function() {
     },
 
     sortBy: function(collection, callback) {
-      const newArr = [...collection]
-      return newArr.sort(function(a, b) {
+      const myArray = [...collection]
+      return myArray.sort(function(a, b) {
         return callback(a) - callback(b)
       })
     },
@@ -95,38 +95,38 @@ const fi = (function() {
         receiver.push(val)
     },
 
-    flatten: function(collection, shallow, newArr=[]) {
-      if (!Array.isArray(collection)) return newArr.push(collection)
+    flatten: function(collection, shallow, myArray=[]) {
+      if (!Array.isArray(collection)) return myArray.push(collection)
       if (shallow) {
         for (let val of collection)
-          Array.isArray(val) ? this.unpack(newArr, val) : newArr.push(val)
+          Array.isArray(val) ? this.unpack(myArray, val) : myArray.push(val)
       } else {
         for (let val of collection) {
-          this.flatten(val, false, newArr)
+          this.flatten(val, false, myArray)
         }
       }
-      return newArr
+      return myArray
     },
 
-    uniqSorted: function(collection, iteratee) {
+    uniqSorted: function(collection, iterations) {
       const sorted = [collection[0]]
-      for (let idx = 1; idx < collection.length; idx++) {
-        if (sorted[idx-1] !== collection[idx])
-          sorted.push(collection[idx])
+      for (let item = 1; item < collection.length; item++) {
+        if (sorted[item-1] !== collection[item])
+          sorted.push(collection[item])
       }
       return sorted
     },
 
-    uniq: function(collection, sorted=false, iteratee=false) {
+    uniq: function(collection, sorted=false, iterations=false) {
       if (sorted) {
-        return fi.uniqSorted(collection, iteratee)
-      } else if (!iteratee) {
+        return fi.uniqSorted(collection, iterations)
+      } else if (!iterations) {
         return Array.from(new Set(collection))
       } else {
         const modifiedVals = new Set()
         const uniqVals = new Set()
         for (let val of collection) {
-          const moddedVal = iteratee(val)
+          const moddedVal = iterations(val)
           if (!modifiedVals.has(moddedVal)) {
             modifiedVals.add(moddedVal)
             uniqVals.add(val)
