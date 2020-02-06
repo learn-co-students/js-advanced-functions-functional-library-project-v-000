@@ -19,7 +19,7 @@ describe('index.js', function () {
       expect(alert).to.have.been.called.exactly(testArr.length)
     })
 
-    
+
     it('calls alert properly on object values', function () {
       fi.each(testObj, spy)
       const objValues = Object.values(testObj)
