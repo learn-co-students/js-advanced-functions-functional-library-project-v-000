@@ -15,10 +15,6 @@ const fi = (function() {
     },
 
     each: function(coll, something) {
-      //for (let x = 0; x < coll.length; x++) {
-      //  alertFn(coll[x]);
-      //}
-
       const newCollection = (coll instanceof Array) ? coll.slice() : Object.values(coll)
       // for (element of newCollection) {
       //   something(element)
