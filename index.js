@@ -149,7 +149,7 @@ const fi = (function() {
     },
 
     // !!!!!!!!!!!SOLUTION CODE
-    // uniqSorted: function(collection) {
+    // uniqSorted: function(collection, iteratee) {
     //   const sorted = [collection[0]]
     //   for (let idx = 1; idx < collection.length; idx++) {
     //     if (sorted[idx-1] !== collection[idx])
@@ -158,13 +158,34 @@ const fi = (function() {
     //   return sorted
     // },
 
+    // uniq: function(collection, sorted=false, iteratee=false) {
+    //   if (sorted) {
+    //     return fi.uniqSorted(collection, iteratee)
+    //   } else if (!iteratee) {
+    //     return Array.from(new Set(collection))
+    //   } else {
+    //     const modifiedVals = new Set()
+    //     const uniqVals = new Set()
+    //     for (let val of collection) {
+    //       const moddedVal = iteratee(val)
+    //       if (!modifiedVals.has(moddedVal)) {
+    //         modifiedVals.add(moddedVal)
+    //         uniqVals.add(val)
+    //       }
+    //     }
+    //     return Array.from(uniqVals)
+    //   }
+    // },
+    // END SOLUTION CODE!!!!!!!!!!!!
+
+
     uniq: function(collection, sorted=false, iteratee=false) {
       // if (sorted) {
       //   return fi.uniqSorted(collection)
       // } else if (!iteratee) {
       if (!iteratee) {
         return Array.from(new Set(collection))
-      } else {
+      } else {  //the section below is the solution code modified to use arrays rather than Sets
         const modifiedVals = []
         const uniqVals = []
         for (let val of collection) {
@@ -177,31 +198,6 @@ const fi = (function() {
         return uniqVals
       }
     },
-    // END SOLUTION CODE!!!!!!!!!!!!
-
-    // uniq: function(array, sorted=false, callback = a => a) {
-      // let newArr = [];
-      // let present;
-      // console.log("Orig: " + array);
-      // // if (!sorted) {
-      // //   const sortCallback = a => a;
-      // //   array = fi.sortBy(array, sortCallback);
-      // // }
-      // console.log("sorted: " + array);
-      // for (let i=0; i<array.length; i++) {
-      //   present = false;
-      //   for (let j=i+1; j<array.length; j++) {
-      //     if (callback(array[i]) === callback(array[j])) {
-      //       present = true;
-      //       break;
-      //     }
-      //   }
-      //   if (!present) {
-      //     newArr.push(array[i])
-      //   } 
-      // }
-      // return newArr;
-    // },
 
     keys: function(object) {
       const keys = [];
