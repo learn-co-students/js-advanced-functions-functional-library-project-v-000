@@ -90,23 +90,42 @@ const fi = (function() {
       return newCollection;
     },
     
-    uniqSorted: function(collection, iteratee){
-      
-    }
-
-    uniq: function (collection, isSorted, fn){
-      debugger;
-      let array = collection.slice();
-      if (!isSorted) { array.sort((a, b) => a - b) };
-
-        for (let i = array.length -1; i >= 0; i--) {
-          if (array[i] === array[i-1]) { array.splice(i,1); } 
+    uniq: function (collection, isSorted = false, iteratee = false){
+      if (isSorted) {
+        return Array.from(new Set(collection))
+      } else if (iteratee)  {
+        let unSortSet = new Set ;
+        let unSortSetValue = new Set ;
+        for (let item of collection) {
+          if (!unSortSet.has(iteratee(item))){
+            unSortSet.add(iteratee(item)) 
+            unSortSetValue.add(item)
+        }
       }
-      return array;
+        return fi.sortBy(Array.from(unSortSetValue), (a)=> a)
+    }else{
+        let sortedArray = fi.sortBy(collection, (a) => a)
+        return Array.from(new Set(sortedArray))
+       
+      }
+      
      },
 
-    
-    functions: function() {
+    keys: function (object) {
+      return Object.keys(object)
+    },
+
+    values: function (object) {
+      return Object.values(object)
+    }, 
+    functions: function(object) {
+      let arr = [] ;
+      for(const prop in object){
+        if (typeof object[prop] === "function"){
+          arr.push(prop)
+      }
+    }
+     return arr
       
     },
 
