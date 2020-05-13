@@ -162,9 +162,30 @@ const fi = (function() {
           }
         }
         return functionNames.sort();
-      }
+      },
 
-      
+      // need to figure this out
+      unpack: function(receiver, array) {
+        for (let value of array) {
+            receiver.push(value);
+        }
+      },
+
+    flatten: function(collection, shallow, newArray=[]) {
+        if (!Array.isArray(collection)) return newArray.push(collection)
+
+        if (shallow) {
+            for (let val of collection)
+                Array.isArray(val) ? this.unpack(newArray, val) : newArray.push(val)
+        } else {
+            for (let val of collection) {
+                this.flatten(val, false, newArray)
+            }
+        }
+
+        return newArray
+    },
+
   }
 
 })()
