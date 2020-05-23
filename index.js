@@ -13,6 +13,7 @@ const fi = (function() {
       
       const keysOrIndices = Object.keys(collection); // This works for Arrays AND Objects!
       // Though it may be cheating, since it uses a built-in function that I have to implement later.
+      // Update: I figured out how to do it! But it may better to have a separate case for arrays and objects.
       
       for (const keyOrIndex of keysOrIndices) {
         callback(collection[keyOrIndex], keyOrIndex, collection);
@@ -201,8 +202,37 @@ const fi = (function() {
       return flattened;
     },
 
-    functions: function() {
+    uniq: function(array, isSorted, callback) {
 
+    },
+
+    keys: function(obj) {
+      let allKeys = [];
+      for (const key in obj) { // I forgot that for..in operates on each KEY, not value!
+        allKeys.push(key);
+      }
+      return allKeys; // I can use this to refactor the other methods above!
+    },
+
+    values: function(obj) {
+      let allValues = [];
+      for (const key in obj) {
+        allValues.push(obj[key]);
+      }
+      return allValues;
+    },
+
+    functions: function(obj) {
+      // I think I just need to use the typeof operator!
+      let sortedFunctionNames = [];
+
+      for (const key in obj) {
+        if (typeof obj[key] === 'function') {
+          sortedFunctionNames.push(key);
+        }
+      }
+
+      return sortedFunctionNames.sort();
     }
   }
 })()
