@@ -35,7 +35,7 @@ const fi = (function() {
     },
 
     map: function(collection, callback) {
-      const keysOrIndices = Object.keys(collection);
+      const keysOrIndices = Object.keys(collection); // Again, I may need to write something else.
       const returnedArray = [];
 
       for (const keyOrIndex of keysOrIndices) {
@@ -69,7 +69,116 @@ const fi = (function() {
         if (predicate(value)) { return value; }
       }
       // If it can't find a value that satisfies the predicate, return undefined (default).
-    }, // There are MORE functions to write after this...
+    },
+
+    filter: function(collection, callback) {
+      let filteredArray = [];
+
+      for (const element of collection) {
+        if (callback(element)) { filteredArray.push(element) }
+      }
+
+      return filteredArray;
+    },
+
+    size: function(collection) {
+      let counter = 0;
+
+      // This may be the only way, without using Object.keys:
+      // if (Array.isArray(collection)) {
+      //   for (const element of collection) {
+      //     counter++;
+      //   }
+      // } else { // The collection is a regular Object
+      //   for (const value in collection) {
+      //     counter++;
+      //   }
+      // }
+
+      // Refactored (since for..in works on Objects AND Arrays):
+      for (const value in collection) {
+        counter++;
+      }
+
+      return counter;
+    },
+
+    first: function(array, n) {
+      if (!n) {
+        return array[0];
+      }
+
+      let firstNElements = [];
+
+      // I added that second condition to return just the entire array
+      // if n > array.length
+      for(let i = 0; i < n && i < array.length; i++) {
+        firstNElements.push(array[i]);
+      }
+
+      return firstNElements;
+    },
+
+    last: function(array, n) {
+      // This may be cheating, but...
+      if (n) {
+        return array.slice(-n); // There are edge cases, but I'll ignore them for simplicity.
+      }
+      return array.slice(-1)[0];
+    },
+
+    compact: function(array) {
+      let compacted = [];
+
+      for (const element of array) {
+        if (element) { compacted.push(element) }
+      }
+      
+      return compacted;
+    },
+
+    sortBy: function(array, callback) {
+      let sorted = [];
+
+      for(const elem of array) {
+        sorted.push(elem);
+      }
+
+      return sorted.sort((valA, valB) => callback(valA) - callback(valB));
+    },
+
+    flatten: function(array, shallow) {
+      let flattened = [];
+
+      if (shallow) {
+        for (const elem of array) {
+          if (Array.isArray(elem)) {
+            for(const nestedElem of elem) {
+              flattened.push(nestedElem);
+            }
+          } else {
+            flattened.push(elem);
+          }
+        }
+      } else { // My first attempt at recursively calling a JS function from an Object
+        for (const elem of array) {
+          if (Array.isArray(elem)) {
+            // for(const nestedElem of elem) {
+            //   flattened.push(nestedElem);
+            // }
+            // flattened.push(this.flatten(elem, true)[0]);
+            const recursivelyFlattened = this.flatten(elem);
+            for(const nestedElem of recursivelyFlattened) {
+              flattened.push(nestedElem);
+            }
+          } else {
+            flattened.push(elem);
+          }
+        }
+      }
+
+      return flattened;
+    },
 
     functions: function() {
 
