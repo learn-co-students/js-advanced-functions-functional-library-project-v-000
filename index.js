@@ -147,9 +147,30 @@ const fi = (function() {
       return sorted.sort((valA, valB) => callback(valA) - callback(valB));
     },
 
-    flatten: function(array, shallow) {
+    flatten: function(array, shallow) { // We want to flatten this at least one level deep.
       let flattened = [];
 
+      // for (const elem of array) {
+      //   if( Array.isArray(elem) ) { // Flatten at the first level
+      //     for (const nestedElem of elem) {
+      //       if( !shallow && Array.isArray(nestedElem) ) {
+      //         // Flatten this array to the innermost nested element
+      //         const recursivelyFlattened = this.flatten(nestedElem);
+
+      //         // Then push every element of the recursively flattened array into the original flattened array
+      //         for(const furtherNested of recursivelyFlattened) {
+      //           flattened.push(furtherNested);
+      //         }
+      //       } else { // Either this element isn't an array, or we only want to flatten one level deep
+      //         flattened.push(nestedElem);
+      //       } // End of inner if/else
+      //     } // End of inner for loop 
+      //   } else { // elem is not an array
+      //     flattened.push(elem);
+      //   } // End of outer if/else
+      // } // End of outer for loop
+
+      // Original attempt: 
       if (shallow) {
         for (const elem of array) {
           if (Array.isArray(elem)) {
@@ -160,7 +181,7 @@ const fi = (function() {
             flattened.push(elem);
           }
         }
-      } else { // My first attempt at recursively calling a JS function from an Object
+      } else { // My first attempt at recursively calling a JS function from an Object; this might be better.
         for (const elem of array) {
           if (Array.isArray(elem)) {
             // for(const nestedElem of elem) {
