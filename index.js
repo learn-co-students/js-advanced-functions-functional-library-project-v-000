@@ -11,13 +11,13 @@ const fi = (function() {
       //   callback(value);
       // }
       
-      const keysOrIndices = Object.keys(collection); // This works for Arrays AND Objects!
+      // const keysOrIndices = Object.keys(collection); // This works for Arrays AND Objects!
       // Though it may be cheating, since it uses a built-in function that I have to implement later.
       // Update: I figured out how to do it! But it may better to have a separate case for arrays and objects.
       
-      for (const keyOrIndex of keysOrIndices) {
-        callback(collection[keyOrIndex], keyOrIndex, collection);
-      }
+      // for (const keyOrIndex of keysOrIndices) {
+      //   callback(collection[keyOrIndex], keyOrIndex, collection);
+      // }
       
       // let i = 0; // Previous code
       // if (Array.isArray(collection)) {
@@ -32,21 +32,28 @@ const fi = (function() {
       //   }
       // }
 
+      // This works for Objects and arrays (but be careful - it's not always straightforward with arrays):
+      // And remember: "of" gets the values, but "in" gets the keys!
+      for (const keyOrIndex in collection) {
+        callback(collection[keyOrIndex], keyOrIndex, collection);
+      }
+
       return collection;
     },
 
     map: function(collection, callback) {
-      const keysOrIndices = Object.keys(collection); // Again, I may need to write something else.
+      // const keysOrIndices = Object.keys(collection); // Again, I may need to write something else.
       const returnedArray = [];
 
-      for (const keyOrIndex of keysOrIndices) {
+      // for (const keyOrIndex of keysOrIndices) {
+      for(const keyOrIndex in collection) {
         returnedArray.push( callback(collection[keyOrIndex], keyOrIndex, collection) );
       }
 
       return returnedArray;
     },
 
-    reduce: function(collection, callback, acc) {
+    reduce: function(collection, callback, acc) { // The collection is assumed to be an Array.
       let i;
 
       if (acc || acc === 0) { // Start the iteration at the first element, if the accumulator has an initial value.
@@ -66,8 +73,12 @@ const fi = (function() {
     },
 
     find: function(collection, predicate) {
-      for (const value of collection) {
-        if (predicate(value)) { return value; }
+      // for (const value of collection) {
+      //   if (predicate(value)) { return value; }
+      // }
+
+      for(const keyOrIndex in collection) { // This works for Objects AND Arrays (though it returns the value, not key/index).
+        if( predicate(collection[keyOrIndex]) ) { return collection[keyOrIndex] }
       }
       // If it can't find a value that satisfies the predicate, return undefined (default).
     },
@@ -75,8 +86,13 @@ const fi = (function() {
     filter: function(collection, callback) {
       let filteredArray = [];
 
-      for (const element of collection) {
-        if (callback(element)) { filteredArray.push(element) }
+      // for (const element of collection) {
+      //   if (callback(element)) { filteredArray.push(element) }
+      // }
+
+      // For objects AND arrays:
+      for (const keyOrIndex in collection) {
+        if ( callback(collection[keyOrIndex]) ) { filteredArray.push(collection[keyOrIndex]) }
       }
 
       return filteredArray;
@@ -97,7 +113,7 @@ const fi = (function() {
       // }
 
       // Refactored (since for..in works on Objects AND Arrays):
-      for (const value in collection) {
+      for (const keyOrIndex in collection) {
         counter++;
       }
 
@@ -111,8 +127,9 @@ const fi = (function() {
 
       let firstNElements = [];
 
-      // I added that second condition to return just the entire array
-      // if n > array.length
+      // I added that second condition in the for loop 
+      // to return just the entire array if n > array.length,
+      // in order to avoid returning an array with a bunch of "undefined" values at the end.
       for(let i = 0; i < n && i < array.length; i++) {
         firstNElements.push(array[i]);
       }
@@ -138,7 +155,7 @@ const fi = (function() {
       return compacted;
     },
 
-    sortBy: function(array, callback) {
+    sortBy: function(array, callback) { // Everything up to here works OK; continue from here.
       let sorted = [];
 
       for(const elem of array) {
