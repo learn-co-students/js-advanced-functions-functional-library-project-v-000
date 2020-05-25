@@ -155,7 +155,7 @@ const fi = (function() {
       return compacted;
     },
 
-    sortBy: function(array, callback) { // Everything up to here works OK; continue from here.
+    sortBy: function(array, callback) { // This also works Arrays of Objects with numerical values.
       let sorted = [];
 
       for(const elem of array) {
@@ -189,9 +189,11 @@ const fi = (function() {
       // } // End of outer for loop
 
       // Original attempt: 
-      if (shallow) {
+      if (shallow) { // We only want to flatten the first level of the array.
         for (const elem of array) {
           if (Array.isArray(elem)) {
+            // If the element on the top level is an array,
+            // then push its elements into the flattened array.
             for(const nestedElem of elem) {
               flattened.push(nestedElem);
             }
@@ -199,7 +201,8 @@ const fi = (function() {
             flattened.push(elem);
           }
         }
-      } else { // My first attempt at recursively calling a JS function from an Object; this might be better.
+      } else { // We want to flatten the array all the way to the innermost nested level.
+        // My first attempt at recursively calling a JS function from an Object; this might be better.
         for (const elem of array) {
           if (Array.isArray(elem)) {
             // for(const nestedElem of elem) {
@@ -220,7 +223,77 @@ const fi = (function() {
     },
 
     uniq: function(array, isSorted, callback) {
+      // If typeof element === 'object', I have to use a different comparison.
+      // function equalObjects(objA, objB) { // This whole thing is incomplete.
+      //   const [objAKeys, objBKeys] = [this.keys(objA), this.keys(objB)];
 
+      //   if (this.size(objA) !== this.size(objB)) {
+      //     return false;
+      //   } else {
+      //     for (const key in objA) {
+      //       if(!this.find(objBKeys, ))
+      //     }
+      //   }
+      // } 
+      // Update: Trying to compare objects is too complicated for this.
+      // objA only === objB if they both POINT to the same Object (i.e., set objB = objA).
+      // {abc: 123} === {abc: 123} returns FALSE.
+      // Since the tests already have two objects with the same reference, I will use === for simplicity.
+      
+      function isInArray(value, arr) {
+        for (const arrValue of arr) {
+          if(value === arrValue) { return true; }
+        }
+        return false;
+      }
+
+      let currentValue = array[0];
+      let uniqueArray = [currentValue]; // Always start with the first element of the array
+      let remainingArray = array.slice(1);
+
+      // Note: I don't know how to refactor the similar lines of code without ruining the faster algorithm for isSorted.
+
+      if(callback) {
+        // In both cases (sorted and unsorted), I have to make sure that each value of the uniqueArray
+        // corresponds to a unique return value of the callback. No two elements should have the same callback return value.
+        let uniqueReturnValues = [callback(currentValue)];
+
+        if(isSorted) { // Technically extra; this is in the Readme, but not the tests.
+          // Since the array is sorted, any equal values will be side-by-side.
+          // So, if a value in the remainingArray !== currentValue, it has yet to be added to the uniqueArray.
+          for(const value of remainingArray) {
+            const returnedValue = callback(value);
+
+            if(value !== currentValue && !isInArray(returnedValue, uniqueReturnValues)) {
+              uniqueReturnValues.push(returnedValue);
+              uniqueArray.push(value);
+              currentValue = value;
+            }
+          }
+        } else { // Not sorted
+          for(const value of remainingArray) {
+            const returnedValue = callback(value);
+
+            if(!isInArray(returnedValue, uniqueReturnValues)) {
+              uniqueReturnValues.push(returnedValue);
+              uniqueArray.push(value);
+            }
+          }
+        } // End of "if (isSorted)"
+      } else if (isSorted) { // No callback, but the array is sorted.
+        for(const value of remainingArray) {
+          if(value !== currentValue) {
+            uniqueArray.push(value);
+            currentValue = value;
+          }
+        }
+      } else { // The array is not sorted, and there is no callback.
+        for(const value of remainingArray) {
+          if(!isInArray(value, uniqueArray)) { uniqueArray.push(value); }
+        }
+      }
+
+      return uniqueArray;
     },
 
     keys: function(obj) {
