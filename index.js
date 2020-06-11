@@ -106,16 +106,79 @@ const fi = (function() {
     },
 
 
-    flatten: function () {
-
+    flatten: function (array, bool, newArray=[]) {
+      if (!Array.isArray(array)) return newArray.push(array)
+      
+      if (bool) {
+        for (let elem of array) {
+          if (Array.isArray(elem)) {
+            for (let elem2 of elem) {
+              newArray.push(elem2)
+            }
+          } else {
+            newArray.push(elem)
+          } 
+        }
+ 
+        }
+      else {
+        for (let elem2 of array) {
+          this.flatten(elem2, false, newArray)
+      }
+    }
+    return newArray
     },
 
-    uniq: function () {
 
+    uniq: function (array, sorted = false, callback = false) {
+      if (sorted) {
+        let newArray = [array[0]]
+        for (let i = 1; i < array.length; i++) {
+          if (newArray[i - 1] !== array[i]) {
+            newArray.push(array[i])
+          }
+        }
+        return newArray
+      }
+
+      else if (!callback) {
+
+        return Array.from(new Set(array))
+      }
+
+      else {
+        let modArray = []
+        let newArray = []
+        for (let elem of array) {
+          let elemVal = callback(elem)
+          if (!modArray.includes(elemVal) )
+          { 
+            modArray.push(elemVal)
+            newArray.push(elem)
+          }
+        }
+        return newArray
+      }
     },
     
+    keys: function(obj) {
+      return Object.keys(obj)
+    },
+
+    values: function(obj) {
+      return Object.values(obj)
+    },
     
-    functions: function() {
+    functions: function(obj) {
+      let functions = []
+      let objKeys = Object.keys(obj)
+      console.log(objKeys)
+      for (let key of objKeys) {
+        if (typeof obj[key] === "function") {
+          functions.push(key)
+        }
+      }
+      return functions.sort()
 
     },
 
