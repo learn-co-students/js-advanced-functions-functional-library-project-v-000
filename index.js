@@ -1,4 +1,4 @@
-const { spy } = require("chai")
+// const { spy } = require("chai")
 
 const fi = (function() {
   return {
@@ -7,34 +7,36 @@ const fi = (function() {
     },
 
     each: function(collection, callback) {
-      for (let i = 0; i < collection.length; i++) {
-        console.log(collection[i])
+      
+      if (collection instanceof Array)  {
+      // Iterates over a collection of elements
+        for (let i = 0; i < collection.length; i++) {
+        //passing each element in turn to a callback function
+          callback(collection[i]) 
+        } 
+    
+      } else { (collection instanceof Object)  
+        for (let i = 0; i < collection.length; i++) {
+          //passing each element in turn to a callback function
+          callback(collection[i]) 
+          return collection
+        } 
       }
-   // each: function(testArr) {
-    // console.log("testArr", testArr)
-      // testArr [ 1, 2, 3, 4 ]
-      // [Function (anonymous)] {
-      //   toString: [Function: toString],
-      //   __spy: { calls: [], called: false, name: undefined },
-      //   reset: [Function (anonymous)]
-      // }
-      //fi.each([ 1, 2, 3, 4 ], alert); // ReferenceError: fi is not defined
-      // fi.each([collection], alert) // ReferenceError: fi is not defined
-      // fi.each() // ReferenceError: fi is not defined
-      //fi.each(testArr, alert);
+      
     },
 
-    map: function() {
 
-    },
+    // map: function() {
 
-    reduce: function() {
+    // },
 
-    },
+    // reduce: function() {
 
-    functions: function() {
+    // },
 
-    },
+    // // functions: function() {
+
+    // },
 
 
   }
