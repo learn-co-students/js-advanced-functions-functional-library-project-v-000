@@ -7,17 +7,18 @@ const fi = (function() {
     },
 
     // each: function() {
-    each: function(collection) {
-      // console.log("collection", collection)
-      // collection [ 1, 2, 3, 4 ]
+    each: function(testArr) {
+      // console.log("testArr", testArr)
+      // testArr [ 1, 2, 3, 4 ]
       // [Function (anonymous)] {
       //   toString: [Function: toString],
       //   __spy: { calls: [], called: false, name: undefined },
       //   reset: [Function (anonymous)]
       // }
-      fi.each([ 1, 2, 3, 4 ], alert); // ReferenceError: fi is not defined
+      //fi.each([ 1, 2, 3, 4 ], alert); // ReferenceError: fi is not defined
       // fi.each([collection], alert) // ReferenceError: fi is not defined
       // fi.each() // ReferenceError: fi is not defined
+      fi.each(testArr, alert);
       
 
    
