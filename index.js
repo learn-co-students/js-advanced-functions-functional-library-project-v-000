@@ -6,9 +6,12 @@ const fi = (function() {
       return 'Start by rceading https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0'
     },
 
-    each: function() {
+    each: function(collection, callback) {
+      for (let i = 0; i < collection.length; i++) {
+        console.log(collection[i])
+      }
    // each: function(testArr) {
-    console.log("testArr", testArr)
+    // console.log("testArr", testArr)
       // testArr [ 1, 2, 3, 4 ]
       // [Function (anonymous)] {
       //   toString: [Function: toString],
@@ -40,4 +43,3 @@ const fi = (function() {
 fi.libraryMethod()
 
 
-fi.each(testArr, alert);
