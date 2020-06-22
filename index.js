@@ -41,13 +41,13 @@ const fi = (function() {
     reduce: function(collection, callback, accumulator) {
       // set newArray
       let newArray = collection.slice()
-      // if there is no value in accumulator
-       if (!accumulator) {
-        //  start with index position 0
-        accumulator = collection[0]
-        // Set newArray to index position 1 to avoid double counting the index position 0
-        newArray = collection.slice(1)
-      }
+        // if there is no value in accumulator
+        if (!accumulator) {
+          //  start with index position 0
+          accumulator = collection[0]
+          // Set newArray to index position 1 to avoid double counting the index position 0
+          newArray = collection.slice(1)
+        }
       // for loop iterate over length of newArray
       for (let i = 0; i < newArray.length; i++) {
         // Set accumulator to callback of accumulator, currentValue, initialValue
@@ -56,9 +56,15 @@ const fi = (function() {
       return accumulator
     },
 
-    //functions: function() {
+    find: function(collection, predicate) {
+      let newArray = collection.slice()
 
-    // },
+
+    },
+
+    functions: function() {
+
+    },
 
 
   }
