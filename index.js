@@ -7,31 +7,16 @@ const fi = (function() {
     },
 
     each: function(collection, callback) {
-      // Check if collection is an Array
-      if (collection instanceof Array)  {
+      let arrayCopy = (collection instanceof Array) ? collection.slice() : Object.values(collection)
+      // Check if collection is an Array 
+     
       // Iterates over a collection of elements
-        for (let i = 0; i < collection.length; i++) {
+        for (let i = 0; i < arrayCopy.length; i++) {
         //passing each element in turn to a callback function
-          callback(collection[i]) 
-        } 
-        // Check if collection is an Object
-      } else { 
-        (collection instanceof Object) 
-        // console.log(Object.values(collection)) // [ 1, 2, 3, 4 ]
-        //let collectionFromObject = collection.values
-          // Iterates over a collection of elements
-        //for (let i = 0; i < collectionFromObject.length; i++) {
-        for (let i = 0; i < collection.values(collection).length; i++) {
-        //passing each element in turn to a callback function
-          callback(collection[i]) 
-          //(collectionFromObject[i])
-          //return (collectionFromObject[i])
-         }
-        // Returns the original collection for chaining.
-        // returns the original collection
-        return collection
-      }
       
+          callback(arrayCopy[i]) 
+        } 
+      return collection
     },
 
 
