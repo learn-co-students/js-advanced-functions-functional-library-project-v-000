@@ -38,11 +38,25 @@ const fi = (function() {
       return newArrayResult
     },
 
-    // reduce: function() {
+    reduce: function(collection, callback, accumulator) {
+      // set newArray
+      let newArray = collection.slice()
+      // if there is no value in accumulator
+       if (!accumulator) {
+        //  start with index position 0
+        accumulator = collection[0]
+        // Set newArray to index position 1 to avoid double counting the index position 0
+        newArray = collection.slice(1)
+      }
+      // for loop iterate over length of newArray
+      for (let i = 0; i < newArray.length; i++) {
+        // Set accumulator to callback of accumulator, currentValue, initialValue
+        accumulator = callback(accumulator, newArray[i], newArray)
+      }
+      return accumulator
+    },
 
-    // },
-
-    // // functions: function() {
+    //functions: function() {
 
     // },
 
