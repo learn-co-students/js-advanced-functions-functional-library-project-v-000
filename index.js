@@ -7,25 +7,25 @@ const fi = (function() {
     },
 
     each: function(collection, callback) {
-      
+      // Check if collection is an Array
       if (collection instanceof Array)  {
       // Iterates over a collection of elements
         for (let i = 0; i < collection.length; i++) {
         //passing each element in turn to a callback function
           callback(collection[i]) 
         } 
-    
+        // Check if collection is an Object
       } else { (collection instanceof Object)  
         // Iterates over a collection of elements
         for (let i = 0; i < collection.length; i++) {
         //passing each element in turn to a callback function
           callback(collection[i]) 
-        }
+         }
         // Returns the original collection for chaining.
         // returns the original collection
         return collection
       }
-      return collection
+      
     },
 
 
