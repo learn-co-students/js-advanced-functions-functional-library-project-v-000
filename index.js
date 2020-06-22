@@ -16,7 +16,7 @@ const fi = (function() {
         } 
         // Check if collection is an Object
       } else { (collection instanceof Object) 
-        console.log(Object.values(collection))
+        console.log(Object.values(collection)) // [ 1, 2, 3, 4 ]
           // Iterates over a collection of elements
         for (let i = 0; i < collection.length; i++) {
         //passing each element in turn to a callback function
