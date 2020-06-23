@@ -99,7 +99,7 @@ const fi = (function() {
       newArray = collection.slice()
       console.log("collection", collection)
 
-    }
+    },
 
     functions: function() {
 
