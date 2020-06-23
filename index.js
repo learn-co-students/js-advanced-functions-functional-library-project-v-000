@@ -58,54 +58,39 @@ const fi = (function() {
 
     find: function(collection, predicate) {
       // set new array
-      // let newArray = collection.slice()
-      // console.log("newArray", newArray)
-      // newArray [
-      //   -1, 4, 0, 1, 3,
-      //    2, 3, 4, 5, 6
-      // ]
-      // console.log("predicate", predicate)
-      // predicate [Function (anonymous)]
-
       let newArray = (collection instanceof Array) ? collection.slice() : Object.values(collection) 
       // console.log("newArray", newArray)
       // newArray [
       //   -1, 4, 0, 1, 3,
       //    2, 3, 4, 5, 6
-      // ]
-
+      // ]      
       // console.log("collection", collection)
       // collection [
       //   -1, 4, 0, 1, 3,
       //    2, 3, 4, 5, 6
       // ]
-      // console.log("Object.values", Object.values)
-      // Object.values [Function: values]
-      // console.log("predicate", predicate)
-      // console.log("predicate", predicate)
-      // predicate [Function (anonymous)] {
-      //   toString: [Function: toString],
-      //   __spy: { calls: [], called: false, name: undefined },
-      //   reset: [Function (anonymous)]
-      // }
-
 
       // iterate over the newArray
       for (let i = 0; i < newArray.length; i++) {
-        // console.log("predicate", predicate)
-        // predicate [Function (anonymous)]
-        // predicate [Function (anonymous)] {
-        //     toString: [Function: toString],
-        //     __spy: { calls: [], called: false, name: undefined },
-        //     reset: [Function (anonymous)]
-        // }
 
-      // compare newArray for predicate
+        // console.log("predicate(collection[i])", predicate(collection[i]))
+        //predicate(collection[i])
+        //predicate(newArray[i]) ? newArray[i] : undefined
+        // console.log("collection[1]", collection[1])
+        //predicate(collection[i]) ? predicate : undefined
+
+        if (predicate(newArray[i])) {
+          return (newArray[i])
+        }
 
       }
+        return undefined
+        
+          
+        // result = callback(predicate)
+      // compare newArray for predicate
 
-
-
+      // console.log("predicate(4)", predicate(4))
 
     },
 
