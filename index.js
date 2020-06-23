@@ -98,8 +98,8 @@ const fi = (function() {
    
     // filter saves all elements that return truthy (save in variable)
     filter: function(collection, predicate) {
-      // let newArray = collection.slice() // AssertionError: expected false to equal true
-      let newArray = (collection instanceof Array) ? collection.slice() : Object.values(collection)
+      let newArray = collection.slice() // AssertionError: expected false to equal true
+      // let newArray = (collection instanceof Array) ? collection.slice() : Object.values(collection)
       // AssertionError: expected false to equal true
       // set newArray to collection if NOT an array use Object.values : else use .slice on collection
       // let newArray = (!collection instanceof Array) ? Object.values(collection) : collection.slice()
