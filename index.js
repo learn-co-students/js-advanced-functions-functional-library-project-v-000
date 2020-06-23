@@ -73,21 +73,26 @@ const fi = (function() {
       // iterate over the newArray
       for (let i = 0; i < newArray.length; i++) {
 
-        console.log("predicate(newArray[i])", predicate(newArray[i]))
+        // console.log("predicate(newArray[i])", predicate(newArray[i]))
+        // predicate(newArray[i]) false
+        // predicate(newArray[i]) true
+        // predicate(newArray[i]) false
+        // predicate(newArray[i]) false
+        // predicate(newArray[i]) false
+        // predicate(newArray[i]) false
+        // predicate(newArray[i]) true
+        // predicate(newArray[i]) false
+        // predicate(newArray[i]) true
+        //       ✓ returns the value if found
+        // predicate(newArray[i]) false
+        // predicate(newArray[i]) false
+        // predicate(newArray[i]) true
 
         if (predicate(newArray[i])) {
           return (newArray[i])
         }
-
       }
         return undefined
-        
-          
-        // result = callback(predicate)
-      // compare newArray for predicate
-
-      // console.log("predicate(4)", predicate(4))
-
     },
 
     functions: function() {
