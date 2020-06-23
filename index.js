@@ -95,9 +95,42 @@ const fi = (function() {
         return undefined
     },
 
+   
+    // filter saves all elements that return truthy (save in variable)
     filter: function(collection, predicate) {
-      newArray = collection.slice()
-      console.log("collection", collection)
+      // let newArray = collection.slice() // AssertionError: expected false to equal true
+      let newArray = (collection instanceof Array) ? collection.slice() : Object.values(collection)
+      // AssertionError: expected false to equal true
+      // set newArray to collection if NOT an array use Object.values : else use .slice on collection
+      // let newArray = (!collection instanceof Array) ? Object.values(collection) : collection.slice()
+      // AssertionError: expected false to equal true
+      // let newArray = (!!collection instanceof Array) ? collection.slice() : Object.values(collection)
+      // AssertionError: expected false to equal true
+      
+     
+       // filter saves all elements that return truthy (save in variable)
+      let truthResults = []
+      // console.log("newArray", newArray)
+      // newArray [
+      //   6, 11, 5, 12, 17,
+      // 100,  9, 1, -8
+      // ]
+
+       // iterate over the newArray
+      for (let i = 0; i < newArray.length; i++) {  // TypeError: Cannot read property 'length' of undefined
+          truthResults.push(newArray[i])
+        return (truthResults[i])
+
+        console.log(truthResults, "truthResults", )
+
+        console.log(truthResults[i], "truthResults[i]", )
+        // if (predicate(newArray[i])) {
+        //   return (newArray[i])
+        
+      }
+      return truthResults
+      // return (truthResults[i])
+        // return undefined
 
     },
 
