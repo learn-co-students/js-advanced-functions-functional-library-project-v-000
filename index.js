@@ -57,7 +57,54 @@ const fi = (function() {
     },
 
     find: function(collection, predicate) {
-      let newArray = collection.slice()
+      // set new array
+      // let newArray = collection.slice()
+      // console.log("newArray", newArray)
+      // newArray [
+      //   -1, 4, 0, 1, 3,
+      //    2, 3, 4, 5, 6
+      // ]
+      // console.log("predicate", predicate)
+      // predicate [Function (anonymous)]
+
+      let newArray = (collection instanceof Array) ? collection.slice() : Object.values(collection) 
+      // console.log("newArray", newArray)
+      // newArray [
+      //   -1, 4, 0, 1, 3,
+      //    2, 3, 4, 5, 6
+      // ]
+
+      // console.log("collection", collection)
+      // collection [
+      //   -1, 4, 0, 1, 3,
+      //    2, 3, 4, 5, 6
+      // ]
+      // console.log("Object.values", Object.values)
+      // Object.values [Function: values]
+      // console.log("predicate", predicate)
+      // console.log("predicate", predicate)
+      // predicate [Function (anonymous)] {
+      //   toString: [Function: toString],
+      //   __spy: { calls: [], called: false, name: undefined },
+      //   reset: [Function (anonymous)]
+      // }
+
+
+      // iterate over the newArray
+      for (let i = 0; i < newArray.length; i++) {
+        // console.log("predicate", predicate)
+        // predicate [Function (anonymous)]
+        // predicate [Function (anonymous)] {
+        //     toString: [Function: toString],
+        //     __spy: { calls: [], called: false, name: undefined },
+        //     reset: [Function (anonymous)]
+        // }
+
+      // compare collection from predicate
+
+      }
+
+
 
 
     },
