@@ -73,11 +73,7 @@ const fi = (function() {
       // iterate over the newArray
       for (let i = 0; i < newArray.length; i++) {
 
-        // console.log("predicate(collection[i])", predicate(collection[i]))
-        //predicate(collection[i])
-        //predicate(newArray[i]) ? newArray[i] : undefined
-        // console.log("collection[1]", collection[1])
-        //predicate(collection[i]) ? predicate : undefined
+        console.log("predicate(newArray[i])", predicate(newArray[i]))
 
         if (predicate(newArray[i])) {
           return (newArray[i])
