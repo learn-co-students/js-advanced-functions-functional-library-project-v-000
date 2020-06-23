@@ -100,7 +100,7 @@ const fi = (function() {
         //     reset: [Function (anonymous)]
         // }
 
-      // compare collection from predicate
+      // compare newArray for predicate
 
       }
 
