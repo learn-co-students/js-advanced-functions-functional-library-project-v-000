@@ -118,7 +118,9 @@ const fi = (function() {
       return truthResults
     },
 
-
+    size: function(collection) {
+      
+    },
 
     functions: function() {
 
