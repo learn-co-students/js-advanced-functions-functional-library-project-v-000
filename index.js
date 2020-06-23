@@ -95,6 +95,12 @@ const fi = (function() {
         return undefined
     },
 
+    filter: function(collection, predicate) {
+      newArray = collection.slice()
+      console.log("collection", collection)
+
+    }
+
     functions: function() {
 
     },
