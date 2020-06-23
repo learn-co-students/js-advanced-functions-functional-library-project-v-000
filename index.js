@@ -95,21 +95,13 @@ const fi = (function() {
         return undefined
     },
 
-   
-    // filter saves all elements that return truthy (save in variable)
     filter: function(collection, predicate) {
-      let newArray = collection.slice() // AssertionError: expected false to equal true
-      // let newArray = (collection instanceof Array) ? collection.slice() : Object.values(collection)
-      // AssertionError: expected false to equal true
-      // set newArray to collection if NOT an array use Object.values : else use .slice on collection
-      // let newArray = (!collection instanceof Array) ? Object.values(collection) : collection.slice()
-      // AssertionError: expected false to equal true
-      // let newArray = (!!collection instanceof Array) ? collection.slice() : Object.values(collection)
-      // AssertionError: expected false to equal true
-      
-     
-       // filter saves all elements that return truthy (save in variable)
+      // set newArray to collection if an array use .slice on collection : else use Object.values
+      let newArray = (collection instanceof Array) ? collection.slice() : Object.values(collection)
+
+       // set save in variable
       let truthResults = []
+
       // console.log("newArray", newArray)
       // newArray [
       //   6, 11, 5, 12, 17,
@@ -117,22 +109,16 @@ const fi = (function() {
       // ]
 
        // iterate over the newArray
-      for (let i = 0; i < newArray.length; i++) {  // TypeError: Cannot read property 'length' of undefined
+      for (let i = 0; i < newArray.length; i++) {            
+        if (predicate(newArray[i])) {
+          // saves all elements that return truthy 
           truthResults.push(newArray[i])
-        return (truthResults[i])
-
-        console.log(truthResults, "truthResults", )
-
-        console.log(truthResults[i], "truthResults[i]", )
-        // if (predicate(newArray[i])) {
-        //   return (newArray[i])
-        
+        }
       }
       return truthResults
-      // return (truthResults[i])
-        // return undefined
-
     },
+
+
 
     functions: function() {
 
