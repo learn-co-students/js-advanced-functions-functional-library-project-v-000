@@ -127,30 +127,27 @@ const fi = (function() {
     },
 
     // first: function(array, [n]) {
-      first: function(array, stop = false) {
-      // newArray = []
-
-      // stop ? 
-
-      if( stop) {
+    // Change [n] to stop variable set to false/no value
+    first: function(array, stop = false) {
+      // Conditional for stop
+      if (stop) {
+          // slice(begin, end)
           return array.slice(0, stop)
       } else {
-          return array.slice()
+          // Array within Array
+          return array[0]
+          // return array.slice(0) Does NOT work
+          // return array.slice() Does NOT work
       }
-      
-          
-    //     if (n) {
-    //       return array(n)
-    //  }   else{
-    //       return array(0)
-}
+    },
 
-      // (n) ? return array(n) : return array(0) Cant have return in ternary
-      // if just array return array(0) 
-      // else array(n)
-      // let newArray = array
-        // (array, [n]) ? array(n) : array(0)
-        // if newArray
+    // last: function(array, [n])
+    last: function(array, stop = false)
+      if (stop) {
+        return array.
+      } else {
+          return 
+      }
     },
 
     functions: function() {
