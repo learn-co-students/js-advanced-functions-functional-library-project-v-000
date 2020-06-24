@@ -128,6 +128,18 @@ const fi = (function() {
 
     first: function(array, [n]) {
 
+          
+           if (n) {
+
+        return array(n)
+     } else{
+        return array(0)
+}
+      // if just array return array(0) 
+      // else array(n)
+      // let newArray = array
+        // if (array, [n]) ? array(n) : array(0)
+        // if newArray
     },
 
     functions: function() {
