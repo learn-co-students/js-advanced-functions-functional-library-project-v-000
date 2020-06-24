@@ -127,11 +127,10 @@ const fi = (function() {
     },
 
     first: function(array, [n]) {
-      
+
     },
 
     functions: function() {
-
 
     },
 
