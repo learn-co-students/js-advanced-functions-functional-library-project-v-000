@@ -126,19 +126,30 @@ const fi = (function() {
       //     return newArray
     },
 
-    first: function(array, [n]) {
+    // first: function(array, [n]) {
+      first: function(array, stop = false) {
+      // newArray = []
 
+      // stop ? 
+
+      if( stop) {
+          return array.slice(0, stop)
+      } else {
+          return array.slice()
+      }
+      
           
-           if (n) {
-
-        return array(n)
-     } else{
-        return array(0)
+    //     if (n) {
+    //       return array(n)
+    //  }   else{
+    //       return array(0)
 }
+
+      // (n) ? return array(n) : return array(0) Cant have return in ternary
       // if just array return array(0) 
       // else array(n)
       // let newArray = array
-        // if (array, [n]) ? array(n) : array(0)
+        // (array, [n]) ? array(n) : array(0)
         // if newArray
     },
 
