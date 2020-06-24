@@ -119,7 +119,33 @@ const fi = (function() {
     },
 
     size: function(collection) {
-      
+      // count = []
+      // let newArray = (collection instanceof Array) ? collection.length() : Object.value(collection.length)
+      // TypeError: Object.value is not a function
+      // let newArray = (collection instanceof Array) ? collection.length() : Object(collection.length)
+      // AssertionError: expected undefined to equal 4
+      // let newArray = (collection instanceof Array) ? collection.length() : Object(collection.length())
+      //  TypeError: collection.length is not a function
+      // let newArray = (collection instanceof Array)
+      // AssertionError: expected undefined to equal 4 
+      // collection.length()
+      // TypeError: collection.length is not a function
+      // let newArray = (collection instanceof Array) ? collection.slice() : Object.values()
+      // TypeError: Cannot convert undefined or null to object
+
+      // let newArray = (collection instanceof Array) ? collection.slice() : Object.values(collection)
+      //   for (let i = 0; i < newArray.length; i++) {
+          // AssertionError: expected undefined to equal 4
+      //   console.log(newArray[i])
+
+      // let newArray = (collection instanceof Array) ? collection.length() : Object.keys(obj).length
+      // ReferenceError: obj is not defined
+
+      let newArray = (collection instanceof Array) ? collection.length : Object.keys(collection).length
+      // AssertionError: expected undefined to equal 4
+        return newArray
+      // }
+
     },
 
     functions: function() {
