@@ -153,6 +153,12 @@ const fi = (function() {
       }
     },
 
+    compact: function(array) {
+      let filterArray = array.filter(Boolean);
+        return filterArray
+
+    },
+
     functions: function() {
 
     },
