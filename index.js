@@ -142,11 +142,14 @@ const fi = (function() {
     },
 
     // last: function(array, [n])
-    last: function(array, stop = false)
+    last: function(array, stop = false) {
       if (stop) {
-        return array.
+        // returns the last n elements of the collection when the second optional argument (n) is provided
+        // return array.slice(Math.max(array.length - n, 0));  
+        return array.slice(Math.max(array.length -stop, 0))
       } else {
-          return 
+          // returns the last element of the collection
+          return array[array.length - 1];
       }
     },
 
