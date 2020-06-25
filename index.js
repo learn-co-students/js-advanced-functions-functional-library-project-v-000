@@ -162,7 +162,7 @@ const fi = (function() {
     },
 
     sortBy: function(array, callback) {
-
+      
     }
 
     functions: function() {
