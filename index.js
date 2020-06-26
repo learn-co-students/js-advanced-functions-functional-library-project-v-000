@@ -182,7 +182,7 @@ const fi = (function() {
       // shallow true
 
       // set up an empty array
-      let newArray = [array];
+      let newArray = [];
       // console.log("newArray", newArray)
       // newArray [ [ 1, [ 2, 3 ], [ [Array], 6, [Array] ] ] ]
       // newArray [ [ 1, [ 2, 3 ], [ [Array], 6, [Array] ] ] ]
@@ -200,21 +200,43 @@ const fi = (function() {
       // If you pass true for the second argument, the array will only be flattened a single level.
       
       // shallow ? 
-      if (shallow === true) {
-        // return newArray.length
-        // array.reduce((acc, val) => acc.concat(val), newArray); //   TypeError: Cannot read property 'length' of undefined
-        // newArray.flat([]) //  TypeError: Cannot read property 'length' of undefined
-        // newArray.flat() // TypeError: Cannot read property 'length' of undefined
-        // newArray.flat([shallow]) // TypeError: Cannot read property 'length' of undefined
-        // return newArray.flat(shallow) // TypeError: Cannot read property 'length' of undefined
-        // return newArray.flat([shallow]) // TypeError: Cannot read property 'length' of undefined
-      } else {
+      if (condition) {
 
+
+      } else {
+         for (let i = 0; i < array.length; i++) {  
+           if (Array.isArray(array[i])) {
+            for (let j = 0; j < array[i].length; j++) { 
+              if (Array.isArray(array[i][j])) {
+                for (let k = 0; k < array[i][j].length; k++) { 
+                  if (Array.isArray(array[i][j][k])) {
+                    for (let l = 0; l < array[i][j][k].length; l++) { 
+                      if (Array.isArray(array[i][j][k][l])) {
+                        console.log("Are you getting me?")
+                      } else {
+                        newArray.push(array[i][j][k][l])
+                      }
+                    }
+
+                  } else {
+                    newArray.push(array[i][j][k])
+                  }
+                }
+              } else {
+                newArray.push(array[i][j])
+
+              }
+            }
+           } else {
+             newArray.push(array[i])
+           }
+          
       }
+    }
       // 3. Probably update the our empty array with an 'unpacked' array...
       
       // ## unpacked is a function in JavaScript (I'm trying to give hints here!)
-
+    return newArray
     },
 
     functions: function() {
