@@ -200,17 +200,26 @@ const fi = (function() {
       // If you pass true for the second argument, the array will only be flattened a single level.
       
       // shallow ? 
-      if (condition) {
-
+      if (shallow === true) {
+        for (let i = 0; i < array.length; i++)
+          // console.log("Im on the 1st level")
+          // if (Array.isArray(array[i])) {
+          //   for (let j = 0; i < array[i].length; j++)
+          // }
+          return newArray.push(array[i])
 
       } else {
          for (let i = 0; i < array.length; i++) {  
+           console.log("I am on the first level")
            if (Array.isArray(array[i])) {
             for (let j = 0; j < array[i].length; j++) { 
+              console.log("I am on the second level")
               if (Array.isArray(array[i][j])) {
                 for (let k = 0; k < array[i][j].length; k++) { 
+                  console.log("I am on the third level")
                   if (Array.isArray(array[i][j][k])) {
                     for (let l = 0; l < array[i][j][k].length; l++) { 
+                      console.log("I am on the fourth level")
                       if (Array.isArray(array[i][j][k][l])) {
                         console.log("Are you getting me?")
                       } else {
