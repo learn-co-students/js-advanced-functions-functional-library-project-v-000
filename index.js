@@ -200,8 +200,9 @@ const fi = (function() {
       // If you pass true for the second argument, the array will only be flattened a single level.
       
       // shallow ? 
+        if (!!shallow === true)
       // if (!shallow === false) {
-      if (shallow === true) {
+      // if (shallow === true) {
         // for (let i = 0; i < array.length; i++) {
         //   newArray.push(array[1])
         // }
