@@ -162,8 +162,60 @@ const fi = (function() {
     },
 
     sortBy: function(array, callback) {
+      // does not modify the original arrays
+      let newArray = [...array]
+        return newArray.sort(function(a, b) {
+          // correctly sorts arrays of integers and arrays of strings
+          // correctly sorts arrays of integers with non-standard sort
+          return callback(a) - callback(b)
+        })
+    },
+
+    // flatten: function(array, [shallow]) {
+    flatten: function(array, shallow) { 
+      // console.log("array", array)   
+      // console.log("shallow", shallow)
+      // array [ 1, [ 2, 3 ], [ [ 4, 5 ], 6, [ 7, [Array] ] ] ]
+      // shallow undefined
+      // 1) correctly flattens a ludicrously nested array
+      // array [ 1, [ 2, 3 ], [ [ 4, 5 ], 6, [ 7, [Array] ] ] ]
+      // shallow true
+
+      // set up an empty array
+      let newArray = [array];
+      // console.log("newArray", newArray)
+      // newArray [ [ 1, [ 2, 3 ], [ [Array], 6, [Array] ] ] ]
+      // newArray [ [ 1, [ 2, 3 ], [ [Array], 6, [Array] ] ] ]
+
+        // iterate over the newArray
+        // for (let i = 0; i < newArray.length; i++) {  
+
+        // }   
+
+        // console.log("newArray.length", newArray.length)
+        // newArray.length 1
+        // newArray.length 1
+
+      // 2. If statement for 'if shallow is true', what do we do next?
+      // If you pass true for the second argument, the array will only be flattened a single level.
       
-    }
+      // shallow ? 
+      if (shallow === true) {
+        // return newArray.length
+        // array.reduce((acc, val) => acc.concat(val), newArray); //   TypeError: Cannot read property 'length' of undefined
+        // newArray.flat([]) //  TypeError: Cannot read property 'length' of undefined
+        // newArray.flat() // TypeError: Cannot read property 'length' of undefined
+        // newArray.flat([shallow]) // TypeError: Cannot read property 'length' of undefined
+        // return newArray.flat(shallow) // TypeError: Cannot read property 'length' of undefined
+        // return newArray.flat([shallow]) // TypeError: Cannot read property 'length' of undefined
+      } else {
+
+      }
+      // 3. Probably update the our empty array with an 'unpacked' array...
+      
+      // ## unpacked is a function in JavaScript (I'm trying to give hints here!)
+
+    },
 
     functions: function() {
 
