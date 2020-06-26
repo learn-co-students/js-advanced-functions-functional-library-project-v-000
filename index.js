@@ -173,57 +173,31 @@ const fi = (function() {
 
     // flatten: function(array, [shallow]) {
     flatten: function(array, shallow, newArray = []) { 
-      // console.log("array", array)   
+            // console.log("array", array)   
       // console.log("shallow", shallow)
       // array [ 1, [ 2, 3 ], [ [ 4, 5 ], 6, [ 7, [Array] ] ] ]
       // shallow undefined
       // 1) correctly flattens a ludicrously nested array
       // array [ 1, [ 2, 3 ], [ [ 4, 5 ], 6, [ 7, [Array] ] ] ]
-      // shallow true
-
-      // set up an empty array
-      // let newArray = [];
       // console.log("newArray", newArray)
       // newArray [ [ 1, [ 2, 3 ], [ [Array], 6, [Array] ] ] ]
       // newArray [ [ 1, [ 2, 3 ], [ [Array], 6, [Array] ] ] ]
 
-        // iterate over the newArray
-        // for (let i = 0; i < newArray.length; i++) {  
-
-        // }   
-
-        // console.log("newArray.length", newArray.length)
-        // newArray.length 1
-        // newArray.length 1
-
-      // 2. If statement for 'if shallow is true', what do we do next?
-      // If you pass true for the second argument, the array will only be flattened a single level.
-      
-      // shallow ? 
-      // if (!!shallow === true) {
-      // if (!shallow === false) {
-       if (shallow === true) {
-      //   for (let i = 0; i < array.length; i++) {
-      //     newArray.push(array[1])
-      //    }
-        // AssertionError: expected false to equal true
-
-      // array [ 1, [ 2, 3 ], [ [ 4, 5 ], 6, [ 7, [Array] ] ] ]
-
-          for (let i = 0; i < array.length; i++) {  
-            if (Array.isArray(array[i])) {
-              for (let j = 0; j < array[i].length; j++) { 
-                //       console.log("I am on the second level")
-                newArray.push(array[i][j])
-              }
-            } else {
-            newArray.push(array[i])
+      if (shallow === true) {
+        for (let i = 0; i < array.length; i++) {  
+        // console.log("I am on the first level")
+          if (Array.isArray(array[i])) {
+            for (let j = 0; j < array[i].length; j++) { 
+            // console.log("I am on the second level")
+              newArray.push(array[i][j])
             }
+          } else {
+            newArray.push(array[i])
           }
-
+        }
       } else {
         for (let i = 0; i < array.length; i++) {  
-          console.log("I am on the first level")
+        // console.log("I am on the first level")
           if (Array.isArray(array[i])) {
             this.flatten(array[i], false, newArray)
           } else {
@@ -231,42 +205,33 @@ const fi = (function() {
           }
         }
       }
-
-
-      //    for (let i = 0; i < array.length; i++) {  
-      //      console.log("I am on the first level")
-      //      if (Array.isArray(array[i])) {
-      //       for (let j = 0; j < array[i].length; j++) { 
-      //         console.log("I am on the second level")
-      //         if (Array.isArray(array[i][j])) {
-      //           for (let k = 0; k < array[i][j].length; k++) { 
-      //             console.log("I am on the third level")
-      //             if (Array.isArray(array[i][j][k])) {
-      //               for (let l = 0; l < array[i][j][k].length; l++) { 
-      //                 console.log("I am on the fourth level")
-      //                 if (Array.isArray(array[i][j][k][l])) {
-      //                   console.log("Are you getting me?")
-      //                 } else {
-      //                   newArray.push(array[i][j][k][l])
-      //                 }
-      //               }
-      //             } else {
-      //               newArray.push(array[i][j][k])
-      //             }
-      //           }
-      //         } else {
-      //           newArray.push(array[i][j])
-      //         }
-      //       }
-      //      } else {
-      //        newArray.push(array[i])
-      //      }
-      //   }
-      // }
-      // 3. Probably update the our empty array with an 'unpacked' array...
-      
-      // ## unpacked is a function in JavaScript (I'm trying to give hints here!)
     return newArray
+    },
+
+    // uniq: function(array, [isSorted], [callback], newArray = []) { 
+    uniq: function(array, isSorted, callback, newArray = []) { 
+      // console.log("array", array)
+      // array [
+      //   1, 1, 2, 3, 2,
+      //   4, 5, 6, 1
+      // ]
+      // console.log("[isSorted]", [isSorted])
+      // [isSorted] [ undefined ]
+      // console.log("[callback]", [callback])
+      // [callback] [ undefined ]
+
+      // array.sort(a, b);
+      //   return a - b
+        // ReferenceError: a is not defined
+      
+        // for (let i = 0; i < array.length; i++) { 
+        //   if (newArray === array) { // conditional
+            // statement
+          // } else {
+            // statement
+          // }
+          array.forEach((item, index) => { if (array.indexOf(item) == index) newArray.push(item) });
+          return newArray
     },
 
     functions: function() {
