@@ -172,7 +172,7 @@ const fi = (function() {
     },
 
     // flatten: function(array, [shallow]) {
-    flatten: function(array, shallow) { 
+    flatten: function(array, shallow, newArray = []) { 
       // console.log("array", array)   
       // console.log("shallow", shallow)
       // array [ 1, [ 2, 3 ], [ [ 4, 5 ], 6, [ 7, [Array] ] ] ]
@@ -182,7 +182,7 @@ const fi = (function() {
       // shallow true
 
       // set up an empty array
-      let newArray = [];
+      // let newArray = [];
       // console.log("newArray", newArray)
       // newArray [ [ 1, [ 2, 3 ], [ [Array], 6, [Array] ] ] ]
       // newArray [ [ 1, [ 2, 3 ], [ [Array], 6, [Array] ] ] ]
@@ -200,61 +200,69 @@ const fi = (function() {
       // If you pass true for the second argument, the array will only be flattened a single level.
       
       // shallow ? 
-        if (!!shallow === true) {
+      // if (!!shallow === true) {
       // if (!shallow === false) {
-      // if (shallow === true) {
-        // for (let i = 0; i < array.length; i++) {
-        //   newArray.push(array[1])
-        // }
+       if (shallow === true) {
+      //   for (let i = 0; i < array.length; i++) {
+      //     newArray.push(array[1])
+      //    }
         // AssertionError: expected false to equal true
 
+      // array [ 1, [ 2, 3 ], [ [ 4, 5 ], 6, [ 7, [Array] ] ] ]
+
+          for (let i = 0; i < array.length; i++) {  
+            if (Array.isArray(array[i])) {
+              for (let j = 0; j < array[i].length; j++) { 
+                //       console.log("I am on the second level")
+                newArray.push(array[i][j])
+              }
+            } else {
+            newArray.push(array[i])
+            }
+          }
+
+      } else {
         for (let i = 0; i < array.length; i++) {  
           console.log("I am on the first level")
           if (Array.isArray(array[i])) {
-            for (let j = 0; j < array[i].length; j++) { 
-              console.log("I am on the second level")
-            }
+            this.flatten(array[i], false, newArray)
           } else {
-            newArray.push(array[i][j])
+            newArray.push(array[i])
           }
-             newArray.push(array[i])
-        }
-        // }
- 
-          // return newArray.push(array[i])
-          // return newArray.push(array)
-
-      } else {
-         for (let i = 0; i < array.length; i++) {  
-           console.log("I am on the first level")
-           if (Array.isArray(array[i])) {
-            for (let j = 0; j < array[i].length; j++) { 
-              console.log("I am on the second level")
-              if (Array.isArray(array[i][j])) {
-                for (let k = 0; k < array[i][j].length; k++) { 
-                  console.log("I am on the third level")
-                  if (Array.isArray(array[i][j][k])) {
-                    for (let l = 0; l < array[i][j][k].length; l++) { 
-                      console.log("I am on the fourth level")
-                      if (Array.isArray(array[i][j][k][l])) {
-                        console.log("Are you getting me?")
-                      } else {
-                        newArray.push(array[i][j][k][l])
-                      }
-                    }
-                  } else {
-                    newArray.push(array[i][j][k])
-                  }
-                }
-              } else {
-                newArray.push(array[i][j])
-              }
-            }
-           } else {
-             newArray.push(array[i])
-           }
         }
       }
+
+
+      //    for (let i = 0; i < array.length; i++) {  
+      //      console.log("I am on the first level")
+      //      if (Array.isArray(array[i])) {
+      //       for (let j = 0; j < array[i].length; j++) { 
+      //         console.log("I am on the second level")
+      //         if (Array.isArray(array[i][j])) {
+      //           for (let k = 0; k < array[i][j].length; k++) { 
+      //             console.log("I am on the third level")
+      //             if (Array.isArray(array[i][j][k])) {
+      //               for (let l = 0; l < array[i][j][k].length; l++) { 
+      //                 console.log("I am on the fourth level")
+      //                 if (Array.isArray(array[i][j][k][l])) {
+      //                   console.log("Are you getting me?")
+      //                 } else {
+      //                   newArray.push(array[i][j][k][l])
+      //                 }
+      //               }
+      //             } else {
+      //               newArray.push(array[i][j][k])
+      //             }
+      //           }
+      //         } else {
+      //           newArray.push(array[i][j])
+      //         }
+      //       }
+      //      } else {
+      //        newArray.push(array[i])
+      //      }
+      //   }
+      // }
       // 3. Probably update the our empty array with an 'unpacked' array...
       
       // ## unpacked is a function in JavaScript (I'm trying to give hints here!)
