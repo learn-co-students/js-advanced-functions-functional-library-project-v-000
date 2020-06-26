@@ -201,20 +201,23 @@ const fi = (function() {
       
       // shallow ? 
       if (shallow === true) {
-        for (let i = 0; i < array.length; i++) {  
-          console.log("I am on the first level")
-          if (Array.isArray(array[i])) {
-           for (let j = 0; j < array[i].length; j++) { 
-             console.log("I am on the second level")
-           }
-          } else {
-            // newArray.push(array[i][j])
-            newArray.push(array[i])
-          }
+        for (let i = 0; i < array.length; i++) {
+          newArray.push(array[1])
         }
-        // } else {
-        // newArray.push(array[i])
+
+
+        // for (let i = 0; i < array.length; i++) {  
+        //   console.log("I am on the first level")
+        //   if (Array.isArray(array[i])) {
+        //    for (let j = 0; j < array[i].length; j++) { 
+        //      console.log("I am on the second level")
+        //    }
+        //   } else {
+        //     // newArray.push(array[i][j])
+        //     newArray.push(array[i])
+        //   }
         // }
+ 
           // return newArray.push(array[i])
           // return newArray.push(array)
 
