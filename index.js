@@ -201,12 +201,22 @@ const fi = (function() {
       
       // shallow ? 
       if (shallow === true) {
-        for (let i = 0; i < array.length; i++)
-          // console.log("Im on the 1st level")
-          // if (Array.isArray(array[i])) {
-          //   for (let j = 0; i < array[i].length; j++)
-          // }
-          return newArray.push(array[i])
+        for (let i = 0; i < array.length; i++) {  
+          console.log("I am on the first level")
+          if (Array.isArray(array[i])) {
+           for (let j = 0; j < array[i].length; j++) { 
+             console.log("I am on the second level")
+           }
+          } else {
+            // newArray.push(array[i][j])
+            newArray.push(array[i])
+          }
+        }
+        // } else {
+        // newArray.push(array[i])
+        // }
+          // return newArray.push(array[i])
+          // return newArray.push(array)
 
       } else {
          for (let i = 0; i < array.length; i++) {  
@@ -226,22 +236,19 @@ const fi = (function() {
                         newArray.push(array[i][j][k][l])
                       }
                     }
-
                   } else {
                     newArray.push(array[i][j][k])
                   }
                 }
               } else {
                 newArray.push(array[i][j])
-
               }
             }
            } else {
              newArray.push(array[i])
            }
-          
+        }
       }
-    }
       // 3. Probably update the our empty array with an 'unpacked' array...
       
       // ## unpacked is a function in JavaScript (I'm trying to give hints here!)
