@@ -209,7 +209,7 @@ const fi = (function() {
     },
 
     // uniq: function(array, [isSorted], [callback], newArray = []) { 
-    uniq: function(array, isSorted, callback, newArray = []) { 
+    uniq: function(array, isSorted, callback = false, newArray = []) { 
 
       // Set.array.forEach((item, index) => { if (array.indexOf(item) == index) newArray.push(item) })
       // return newArray
@@ -231,7 +231,7 @@ const fi = (function() {
         // if (array.isSorted) {
         //   return array
       
-        if (callback === true) {
+        if (callback) {
 
             for (let i = 0; i < array.length; i++) {  
   
