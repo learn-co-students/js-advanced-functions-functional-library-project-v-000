@@ -230,20 +230,30 @@ const fi = (function() {
 
         // if (array.isSorted) {
         //   return array
-      
-        if (callback) {
+        let cbArray = []
 
-            for (let i = 0; i < array.length; i++) {  
+        if (!cbArray.includes(callback(array[i])) {
+
+          for (let i = 0; i < array.length; i++) {
+            cbArray.push(array[i])
+          }
+        // } else {
+
+        // }
+          
+        // if (callback) {
+
+        //     for (let i = 0; i < array.length; i++) {  
   
-              if (array[i] === callback[i]) {
+        //       if (array[i] === callback[i]) {
 
-                  newArray.push(array[i])
+        //           newArray.push(array[i])
                 
         //     //   } else {
         //     //     newArray.push(array[i])
         //     //   }
-              }
-            }
+              // }
+            
 
         } else {
           array.forEach((item, index) => { if (array.indexOf(item) == index) newArray.push(item) });
