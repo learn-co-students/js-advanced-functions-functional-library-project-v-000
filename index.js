@@ -210,6 +210,10 @@ const fi = (function() {
 
     // uniq: function(array, [isSorted], [callback], newArray = []) { 
     uniq: function(array, isSorted, callback, newArray = []) { 
+
+      // Set.array.forEach((item, index) => { if (array.indexOf(item) == index) newArray.push(item) })
+      // return newArray
+
       // console.log("array", array)
       // array [
       //   1, 1, 2, 3, 2,
@@ -223,15 +227,29 @@ const fi = (function() {
       // array.sort(a, b);
       //   return a - b
         // ReferenceError: a is not defined
+
+        // if (array.isSorted) {
+        //   return array
       
-        // for (let i = 0; i < array.length; i++) { 
-        //   if (newArray === array) { // conditional
-            // statement
-          // } else {
-            // statement
-          // }
+        if (callback === true) {
+
+            for (let i = 0; i < array.length; i++) {  
+  
+              if (array[i] === callback[i]) {
+
+                  newArray.push(array[i])
+                
+        //     //   } else {
+        //     //     newArray.push(array[i])
+        //     //   }
+              }
+            }
+
+        } else {
           array.forEach((item, index) => { if (array.indexOf(item) == index) newArray.push(item) });
+          // array.forEach((item, index) => { if (newArray.indexOf(item) === -1) newArray.push(item) }); Alternative Solution
           return newArray
+        }
     },
 
     functions: function() {
