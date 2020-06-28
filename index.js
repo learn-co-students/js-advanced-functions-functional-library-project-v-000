@@ -251,15 +251,29 @@ const fi = (function() {
             // newSet Set(7) { 1, 2, 3, 4, 6, 9, 0 }
             
           }
+          
             // turn set into array
-            console.log("[...newSet]", [...newSet])
-            // [...newSet] [
-            //   1, 2, 3, 4,
-            //   6, 9, 0
-            // ]
-         
-            newArray = [...newSet].flatten
-            return newArray
+            // console.log("[...newSet]", [...newSet])
+            // [...newSet] [ 1, 2, 0 ]
+            // [ 1, 2, 0 ]
+            // [...newSet].flatten([...newSet], true) //  AssertionError: expected false to equal true
+
+            newArray = [...newSet] //  AssertionError: expected false to equal true
+            // newArray = [...newSet].flatten // AssertionError: expected false to equal true
+            // newArray = [...newSet].flatten([...newSet], true)// AssertionError: expected false to equal true
+            
+            // return newArray //AssertionError: expected false to equal true
+            // return newArray.flatten //AssertionError: expected false to equal true
+            // return newArray.flatten(array, true) //AssertionError: expected false to equal true
+            // return newArray.flatten([...newSet], true) // AssertionError: expected false to equal true
+            // return newArray.flatten(array, true, newArray) //AssertionError: expected false to equal true
+            // return newArray.flatten([...newSet], true, newArray) // AssertionError: expected false to equal true
+            // return newArray.flat([...newSet]) //AssertionError: expected false to equal true
+            // return newArray.flat() // AssertionError: expected false to equal true
+            // return newArray.flat(array, true) // AssertionError: expected false to equal true
+            //return newArray.flat([...newSet]) // AssertionError: expected false to equal true
+            // return newArray.flat([...newSet], true) // AssertionError: expected false to equal true
+            // return newArray.flat(array, true, newArray) // AssertionError: expected false to equal true
             // console.log("newArray", newArray)
             // [
             //   1, 2, 3, 4,
@@ -272,10 +286,19 @@ const fi = (function() {
           //   6, 9, 0
           // ]
 
-           newSet.add(array)
-           console.log("[...newSet]2", [...newSet])
-           console.log("faltten", this.flatten([...newSet], true))
-           return [...newSet]
+          //  newSet.add(array)
+          //  console.log("[...newSet]2", [...newSet])
+          //  [...newSet] [ 1, 2, 0 ]
+          //   [ 1, 2, 0 ]
+
+          //  console.log("flatten", this.flatten([...newSet], true))
+          //  flatten [
+          //   1, 1, 2, 3, 2,
+          //   4, 5, 6, 1
+          // ]
+
+           //return [...newSet] //.flaatten
+           return this.flatten([...newSet], true)
         }
 
     },
