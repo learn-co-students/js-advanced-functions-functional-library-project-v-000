@@ -209,58 +209,58 @@ const fi = (function() {
     },
 
     // uniq: function(array, [isSorted], [callback], newArray = []) { 
-    uniq: function(array, isSorted, callback = false, newArray = []) { 
+    // uniq: function(array, isSorted, callback = false, newArray = []) { 
 
-      // Set.array.forEach((item, index) => { if (array.indexOf(item) == index) newArray.push(item) })
-      // return newArray
+    //   // Set.array.forEach((item, index) => { if (array.indexOf(item) == index) newArray.push(item) })
+    //   // return newArray
 
-      // console.log("array", array)
-      // array [
-      //   1, 1, 2, 3, 2,
-      //   4, 5, 6, 1
-      // ]
-      // console.log("[isSorted]", [isSorted])
-      // [isSorted] [ undefined ]
-      // console.log("[callback]", [callback])
-      // [callback] [ undefined ]
+    //   // console.log("array", array)
+    //   // array [
+    //   //   1, 1, 2, 3, 2,
+    //   //   4, 5, 6, 1
+    //   // ]
+    //   // console.log("[isSorted]", [isSorted])
+    //   // [isSorted] [ undefined ]
+    //   // console.log("[callback]", [callback])
+    //   // [callback] [ undefined ]
 
-      // array.sort(a, b);
-      //   return a - b
-        // ReferenceError: a is not defined
+    //   // array.sort(a, b);
+    //   //   return a - b
+    //     // ReferenceError: a is not defined
 
-        // if (array.isSorted) {
-        //   return array
-        let cbArray = []
+    //     // if (array.isSorted) {
+    //     //   return array
+    //     let cbArray = []
 
-        if (!cbArray.includes(callback(array[i])) {
+    //     if (!cbArray.includes(callback(array[i])) {
 
-          for (let i = 0; i < array.length; i++) {
-            cbArray.push(array[i])
-          }
-        // } else {
+    //       for (let i = 0; i < array.length; i++) {
+    //         cbArray.push(array[i])
+    //       }
+    //     // } else {
 
-        // }
+    //     // }
           
-        // if (callback) {
+    //     // if (callback) {
 
-        //     for (let i = 0; i < array.length; i++) {  
+    //     //     for (let i = 0; i < array.length; i++) {  
   
-        //       if (array[i] === callback[i]) {
+    //     //       if (array[i] === callback[i]) {
 
-        //           newArray.push(array[i])
+    //     //           newArray.push(array[i])
                 
-        //     //   } else {
-        //     //     newArray.push(array[i])
-        //     //   }
-              // }
+    //     //     //   } else {
+    //     //     //     newArray.push(array[i])
+    //     //     //   }
+    //           // }
             
 
-        } else {
-          array.forEach((item, index) => { if (array.indexOf(item) == index) newArray.push(item) });
-          // array.forEach((item, index) => { if (newArray.indexOf(item) === -1) newArray.push(item) }); Alternative Solution
-          return newArray
-        }
-    },
+    //     } else {
+    //       array.forEach((item, index) => { if (array.indexOf(item) == index) newArray.push(item) });
+    //       // array.forEach((item, index) => { if (newArray.indexOf(item) === -1) newArray.push(item) }); Alternative Solution
+    //       return newArray
+    //     }
+    // },
 
     functions: function() {
 
