@@ -209,58 +209,76 @@ const fi = (function() {
     },
 
     // uniq: function(array, [isSorted], [callback], newArray = []) { 
-    // uniq: function(array, isSorted, callback = false, newArray = []) { 
+    uniq: function(array, isSorted, callback = false, newArray = []) { 
+3
 
-    //   // Set.array.forEach((item, index) => { if (array.indexOf(item) == index) newArray.push(item) })
-    //   // return newArray
 
-    //   // console.log("array", array)
-    //   // array [
-    //   //   1, 1, 2, 3, 2,
-    //   //   4, 5, 6, 1
-    //   // ]
-    //   // console.log("[isSorted]", [isSorted])
-    //   // [isSorted] [ undefined ]
-    //   // console.log("[callback]", [callback])
-    //   // [callback] [ undefined ]
+      // Set.array.forEach((item, index) => { if (array.indexOf(item) == index) newArray.push(item) })
+      // return newArray
 
-    //   // array.sort(a, b);
-    //   //   return a - b
-    //     // ReferenceError: a is not defined
+      // console.log("array", array)
+      // array [
+      //   1, 1, 2, 3, 2,
+      //   4, 5, 6, 1
+      // ]
+      // console.log("[isSorted]", [isSorted])
+      // [isSorted] [ undefined ]
+      // console.log("[callback]", [callback])
+      // [callback] [ undefined ]
 
-    //     // if (array.isSorted) {
-    //     //   return array
-    //     let cbArray = []
+      // array.sort(a, b);
+      //   return a - b
+        // ReferenceError: a is not defined
 
-    //     if (!cbArray.includes(callback(array[i])) {
+        // if (array.isSorted) {
+        //   return array
 
-    //       for (let i = 0; i < array.length; i++) {
-    //         cbArray.push(array[i])
-    //       }
-    //     // } else {
+        let newSet = new Set()
 
-    //     // }
-          
-    //     // if (callback) {
+        if (callback) {
+          for (let i = 0; i < array.length; i++) {
 
-    //     //     for (let i = 0; i < array.length; i++) {  
-  
-    //     //       if (array[i] === callback[i]) {
-
-    //     //           newArray.push(array[i])
-                
-    //     //     //   } else {
-    //     //     //     newArray.push(array[i])
-    //     //     //   }
-    //           // }
+            //adding to the set after callling th callback function[i]
+            //newSet.add(callback(array[i]))
+            newSet.add(callback(array[i]))
+            // console.log("newSet", newSet)
+            // newSet Set(6) { 1, 2, 3, 4, 6, 9 }
+            // newSet Set(6) { 1, 2, 3, 4, 6, 9 }
+            // newSet Set(6) { 1, 2, 3, 4, 6, 9 }
+            // newSet Set(7) { 1, 2, 3, 4, 6, 9, 0 }
+            // newSet Set(7) { 1, 2, 3, 4, 6, 9, 0 }
+            // newSet Set(7) { 1, 2, 3, 4, 6, 9, 0 }
+            // newSet Set(7) { 1, 2, 3, 4, 6, 9, 0 }
             
+          }
+            // turn set into array
+            console.log("[...newSet]", [...newSet])
+            // [...newSet] [
+            //   1, 2, 3, 4,
+            //   6, 9, 0
+            // ]
+         
+            newArray = [...newSet].flatten
+            return newArray
+            // console.log("newArray", newArray)
+            // [
+            //   1, 2, 3, 4,
+            //   6, 9, 0
+            // ]
+        } else {
+          
+          // [
+          //   1, 2, 3, 4,
+          //   6, 9, 0
+          // ]
 
-    //     } else {
-    //       array.forEach((item, index) => { if (array.indexOf(item) == index) newArray.push(item) });
-    //       // array.forEach((item, index) => { if (newArray.indexOf(item) === -1) newArray.push(item) }); Alternative Solution
-    //       return newArray
-    //     }
-    // },
+           newSet.add(array)
+           console.log("[...newSet]2", [...newSet])
+           console.log("faltten", this.flatten([...newSet], true))
+           return [...newSet]
+        }
+
+    },
 
     functions: function() {
 
