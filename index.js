@@ -239,13 +239,17 @@ const fi = (function() {
     },
 
 // keys: function(Object) {
-keys:function(object) {
+keys: function(object) {
   // console.log("Object.getOwnPropertyNames(object)", Object.getOwnPropertyNames(object))
   // Object.getOwnPropertyNames(object) [ 'one', 'two', 'three', 'four' ]
   return Object.getOwnPropertyNames(object)
 },
     
-
+// values: function(Object) {
+values: function(obect) {
+  console.log("object", object)
+  
+},
 
     functions: function() {
 
