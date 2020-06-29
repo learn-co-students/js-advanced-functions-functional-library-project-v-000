@@ -99,7 +99,7 @@ const fi = (function() {
       // set newArray to collection if an array use .slice on collection : else use Object.values
       let newArray = (collection instanceof Array) ? collection.slice() : Object.values(collection)
 
-       // set save in variable
+      // set save in variable
       let truthResults = []
 
       // console.log("newArray", newArray)
@@ -108,7 +108,7 @@ const fi = (function() {
       // 100,  9, 1, -8
       // ]
 
-       // iterate over the newArray
+      // iterate over the newArray
       for (let i = 0; i < newArray.length; i++) {            
         if (predicate(newArray[i])) {
           // saves all elements that return truthy 
@@ -156,107 +156,105 @@ const fi = (function() {
     compact: function(array) {
       // returns a copy of the **array** with all falsy values removed. 
         // In JavaScript, _false_, _null_, _0_, _""_, _undefined_ and _NaN_ are all falsy.
-      // does not modify the original array
-      let filterArray = array.filter(Boolean);
-        return filterArray
-    },
+        // does not modify the original array
+        let filterArray = array.filter(Boolean);
+          return filterArray
+      },
 
     sortBy: function(array, callback) {
-      // does not modify the original arrays
+    // does not modify the original arrays
       let newArray = [...array]
         return newArray.sort(function(a, b) {
-          // correctly sorts arrays of integers and arrays of strings
-          // correctly sorts arrays of integers with non-standard sort
+        // correctly sorts arrays of integers and arrays of strings
+        // correctly sorts arrays of integers with non-standard sort
           return callback(a) - callback(b)
         })
     },
 
-    // flatten: function(array, [shallow]) {
+      // flatten: function(array, [shallow]) {
     flatten: function(array, shallow, newArray = []) { 
-            // console.log("array", array)   
-      // console.log("shallow", shallow)
-      // array [ 1, [ 2, 3 ], [ [ 4, 5 ], 6, [ 7, [Array] ] ] ]
+    // console.log("array", array)   
+    // console.log("shallow", shallow)
+    // array [ 1, [ 2, 3 ], [ [ 4, 5 ], 6, [ 7, [Array] ] ] ]
       // shallow undefined
-      // 1) correctly flattens a ludicrously nested array
-      // array [ 1, [ 2, 3 ], [ [ 4, 5 ], 6, [ 7, [Array] ] ] ]
+    // 1) correctly flattens a ludicrously nested array
+    // array [ 1, [ 2, 3 ], [ [ 4, 5 ], 6, [ 7, [Array] ] ] ]
       // console.log("newArray", newArray)
-      // newArray [ [ 1, [ 2, 3 ], [ [Array], 6, [Array] ] ] ]
-      // newArray [ [ 1, [ 2, 3 ], [ [Array], 6, [Array] ] ] ]
+    // newArray [ [ 1, [ 2, 3 ], [ [Array], 6, [Array] ] ] ]
+    // newArray [ [ 1, [ 2, 3 ], [ [Array], 6, [Array] ] ] ]
 
-      if (shallow === true) {
-        for (let i = 0; i < array.length; i++) {  
+    if (shallow === true) {
+      for (let i = 0; i < array.length; i++) {  
         // console.log("I am on the first level")
-          if (Array.isArray(array[i])) {
-            for (let j = 0; j < array[i].length; j++) { 
-            // console.log("I am on the second level")
-              newArray.push(array[i][j])
-            }
-          } else {
-            newArray.push(array[i])
+        if (Array.isArray(array[i])) {
+          for (let j = 0; j < array[i].length; j++) { 
+          // console.log("I am on the second level")
+          newArray.push(array[i][j])
           }
+        } else {
+          newArray.push(array[i])
         }
-      } else {
-        for (let i = 0; i < array.length; i++) {  
-        // console.log("I am on the first level")
+        }
+    } else {
+      for (let i = 0; i < array.length; i++) {  
+      // console.log("I am on the first level")
           if (Array.isArray(array[i])) {
             this.flatten(array[i], false, newArray)
           } else {
             newArray.push(array[i])
           }
-        }
       }
-    return newArray
+    }
+      return newArray
     },
 
     // HELPER
     uniqueSorted: function(array, interatee) {
-      const sorted = [array[0]]
-      for (let i = 1; i < array.length; i++) {
-        if (sorted[i -1] !== array[i]) {
-          sorted.push(array[i])
-        }
-          return sorted
+    const sorted = [array[0]]
+    for (let i = 1; i < array.length; i++) {
+      if (sorted[i -1] !== array[i]) {
+        sorted.push(array[i])
       }
+       return sorted
+    }
     },
 
     uniq: function(array, sorted=false, iteratee=false) {
       if (sorted) {
         return fi.uniqSorted(array, iteratee)
       } else if (!iteratee) {
-        return Array.from(new Set(array))
-      } else {
-        const modifiedVals = new Set()
+         return Array.from(new Set(array))
+       } else {
+         const modifiedVals = new Set()
         const uniqVals = new Set()
         for (let val of array) {
           const moddedVal = iteratee(val)
           if (!modifiedVals.has(moddedVal)) {
             modifiedVals.add(moddedVal)
             uniqVals.add(val)
-          }
+           }
         }
         return Array.from(uniqVals)
       }
     },
 
-// keys: function(Object) {
-keys: function(object) {
-    // console.log("object", object) 
-  // object { one: 1, two: 2, three: 3, four: 4 }
-  // console.log("Object.getOwnPropertyNames(object)", Object.getOwnPropertyNames(object))
-  // Object.getOwnPropertyNames(object) [ 'one', 'two', 'three', 'four' ]
-  return (Object.getOwnPropertyNames(object))
-},
-    
-// values: function(Object) {
-values: function(object) {
-  // console.log("object", object) 
-  // object { one: 1, two: 2, three: 3, four: 4 }
-  // console.log("Object.values(object)", Object.values(object)); 
-  // Object.values(object) [ 1, 2, 3, 4 ]
-  return (Object.values(object));
-},
-
-
+    // keys: function(Object) {
+    keys: function(object) {
+        // console.log("object", object) 
+      // object { one: 1, two: 2, three: 3, four: 4 }
+      // console.log("Object.getOwnPropertyNames(object)", Object.getOwnPropertyNames(object))
+      // Object.getOwnPropertyNames(object) [ 'one', 'two', 'three', 'four' ]
+      return (Object.getOwnPropertyNames(object))
+    },
+        
+    // values: function(Object) {
+    values: function(object) {
+      // console.log("object", object) 
+      // object { one: 1, two: 2, three: 3, four: 4 }
+      // console.log("Object.values(object)", Object.values(object)); 
+      // Object.values(object) [ 1, 2, 3, 4 ]
+      return (Object.values(object));
+    },
 
     functions: function() {
 
