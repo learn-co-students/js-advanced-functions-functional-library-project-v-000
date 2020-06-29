@@ -265,7 +265,7 @@ const fi = (function() {
       // console.log(object[function].name) //SYNTAX ERROR
       // console.log(object[Function].name) // TypeError: Cannot read property 'name' of undefined
       // console.log(object[function.name]) // SYNTAX ERROR
-      console.log(object[Function.name])
+      console.log(object[Function.name]) // undefined
 
     },
 
