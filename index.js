@@ -256,20 +256,32 @@ const fi = (function() {
       return (Object.values(object));
     },
 
-
     functions: function(object) {
-      // console.log("object", object) 
-      // object { a: '', z: [Function: z], p: '', c: [Function: c], k: [Function: k] }
-      // console.log(object.function.name) // NOTHING
-      // console.log(object.Function.name) // NOTHING
-      // console.log(object[function].name) //SYNTAX ERROR
-      // console.log(object[Function].name) // TypeError: Cannot read property 'name' of undefined
-      // console.log(object[function.name]) // SYNTAX ERROR
-      console.log(object[Function.name]) // undefined
-
-    },
-
-
+    // console.log("object", object) 
+    // object { a: '', z: [Function: z], p: '', c: [Function: c], k: [Function: k] }
+    // console.log(Object.getOwnPropertyNames(object))
+    // [ 'a', 'z', 'p', 'c', 'k' ]
+    // for (const property in object) {
+    //   console.log(`${property}: ${object[property]}`);
+    // a:
+    // z: () => null
+    // p:
+    // c: () => null
+    // k: () => null
+    // }
+    
+      // set variable to empty array
+      let functionNames = []
+      // iterate over object key
+      for (const key in object) {
+        // check typeof object[key] has the text function
+        if (typeof object[key] === "function") {
+          // shovel key to functionNames array
+          functionNames.push(key)
+        }
+      }
+      return functionNames.sort()
+   },
   }
 })()
 
