@@ -240,16 +240,23 @@ const fi = (function() {
 
 // keys: function(Object) {
 keys: function(object) {
+    // console.log("object", object) 
+  // object { one: 1, two: 2, three: 3, four: 4 }
   // console.log("Object.getOwnPropertyNames(object)", Object.getOwnPropertyNames(object))
   // Object.getOwnPropertyNames(object) [ 'one', 'two', 'three', 'four' ]
-  return Object.getOwnPropertyNames(object)
+  return (Object.getOwnPropertyNames(object))
 },
     
 // values: function(Object) {
-values: function(obect) {
-  console.log("object", object)
-  
+values: function(object) {
+  // console.log("object", object) 
+  // object { one: 1, two: 2, three: 3, four: 4 }
+  // console.log("Object.values(object)", Object.values(object)); 
+  // Object.values(object) [ 1, 2, 3, 4 ]
+  return (Object.values(object));
 },
+
+
 
     functions: function() {
 
