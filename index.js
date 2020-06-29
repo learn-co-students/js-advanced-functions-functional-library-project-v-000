@@ -258,7 +258,14 @@ const fi = (function() {
 
 
     functions: function(object) {
-      console.log("object", object) 
+      // console.log("object", object) 
+      // object { a: '', z: [Function: z], p: '', c: [Function: c], k: [Function: k] }
+      // console.log(object.function.name) // NOTHING
+      // console.log(object.Function.name) // NOTHING
+      // console.log(object[function].name) //SYNTAX ERROR
+      // console.log(object[Function].name) // TypeError: Cannot read property 'name' of undefined
+      // console.log(object[function.name]) // SYNTAX ERROR
+      console.log(object[Function.name])
 
     },
 
