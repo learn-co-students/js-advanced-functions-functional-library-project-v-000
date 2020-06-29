@@ -256,7 +256,9 @@ const fi = (function() {
       return (Object.values(object));
     },
 
-    functions: function() {
+
+    functions: function(object) {
+      console.log("object", object) 
 
     },
 
