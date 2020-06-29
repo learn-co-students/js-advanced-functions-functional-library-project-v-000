@@ -218,20 +218,6 @@ const fi = (function() {
           return sorted
       }
     },
-    // uniq: function(array, sorted = false, iteratee = false) { 
-    //   if (sorted) {
-    //     //not sorted
-    //     return fi.uniqueSorted(array, interatee) //sort array
-    //   } else if (!iteratee  ){ 
-    //     // condition that states iteratee is true
-    //     return array
-    //     //return that
-
-    //   }
-
-
-    // },
-
 
     uniq: function(array, sorted=false, iteratee=false) {
       if (sorted) {
@@ -252,104 +238,13 @@ const fi = (function() {
       }
     },
 
-
-    // uniq: function(array, [isSorted], [callback], newArray = []) { 
-//     uniq: function(array, isSorted, callback = false, newArray = []) { 
-// 3
-
-      
-//       // Set.array.forEach((item, index) => { if (array.indexOf(item) == index) newArray.push(item) })
-//       // return newArray
-
-//       // console.log("array", array)
-//       // array [
-//       //   1, 1, 2, 3, 2,
-//       //   4, 5, 6, 1
-//       // ]
-//       // console.log("[isSorted]", [isSorted])
-//       // [isSorted] [ undefined ]
-//       // console.log("[callback]", [callback])
-//       // [callback] [ undefined ]
-
-//       // array.sort(a, b);
-//       //   return a - b
-//         // ReferenceError: a is not defined
-
-//         // if (array.isSorted) {
-//         //   return array
-
-//         let newSet = new Set()
-
-//         if (callback) {
-//           for (let i = 0; i < array.length; i++) {
-
-//             //adding to the set after callling th callback function[i]
-//             //newSet.add(callback(array[i]))
-//             newSet.add(callback(array[i]))
-//             // console.log("newSet", newSet)
-//             // newSet Set(6) { 1, 2, 3, 4, 6, 9 }
-//             // newSet Set(6) { 1, 2, 3, 4, 6, 9 }
-//             // newSet Set(6) { 1, 2, 3, 4, 6, 9 }
-//             // newSet Set(7) { 1, 2, 3, 4, 6, 9, 0 }
-//             // newSet Set(7) { 1, 2, 3, 4, 6, 9, 0 }
-//             // newSet Set(7) { 1, 2, 3, 4, 6, 9, 0 }
-//             // newSet Set(7) { 1, 2, 3, 4, 6, 9, 0 }
-            
-//           }
-          
-//             // turn set into array
-//             // console.log("[...newSet]", [...newSet])
-//             // [...newSet] [ 1, 2, 0 ]
-//             // [ 1, 2, 0 ]
-//             // [...newSet].flatten([...newSet], true) //  AssertionError: expected false to equal true
-
-//             newArray = [...newSet] //  AssertionError: expected false to equal true
-//             // console.log("newArray", newArray)
-//             // newArray = [...newSet].flatten // AssertionError: expected false to equal true
-//             // newArray = [...newSet].flatten([...newSet], true)// AssertionError: expected false to equal true
-//             return newArray
-//             // return newArray //AssertionError: expected false to equal true
-//             // return newArray.flatten //AssertionError: expected false to equal true
-//             // return newArray.flatten(array, true) //AssertionError: expected false to equal true
-//             // return newArray.flatten([...newSet], true) // AssertionError: expected false to equal true
-//             // return newArray.flatten(array, true, newArray) //AssertionError: expected false to equal true
-//             // return newArray.flatten([...newSet], true, newArray) // AssertionError: expected false to equal true
-//             // return newArray.flat([...newSet]) //AssertionError: expected false to equal true
-//             // return newArray.flat() // AssertionError: expected false to equal true
-//             // return newArray.flat(array, true) // AssertionError: expected false to equal true
-//             //return newArray.flat([...newSet]) // AssertionError: expected false to equal true
-//             // return newArray.flat([...newSet], true) // AssertionError: expected false to equal true
-//             // return newArray.flat(array, true, newArray) // AssertionError: expected false to equal true
-            
-//             // console.log("newArray", newArray)
-//             // [
-//             //   1, 2, 3, 4,
-//             //   6, 9, 0
-//             // ]
-//         } else {
-          
-//           // [
-//           //   1, 2, 3, 4,
-//           //   6, 9, 0
-//           // ]
-
-//           //  newSet.add(array)
-//           //  console.log("[...newSet]2", [...newSet])
-//           //  [...newSet] [ 1, 2, 0 ]
-//           //   [ 1, 2, 0 ]
-
-//           //  console.log("flatten", this.flatten([...newSet], true))
-//           //  flatten [
-//           //   1, 1, 2, 3, 2,
-//           //   4, 5, 6, 1
-//           // ]
-
-//            //return [...newSet] //.flaatten
-//            return this.flatten([...newSet], true)
-//         }
-
-//     },
-
+// keys: function(Object) {
+keys:function(object) {
+  // console.log("Object.getOwnPropertyNames(object)", Object.getOwnPropertyNames(object))
+  // Object.getOwnPropertyNames(object) [ 'one', 'two', 'three', 'four' ]
+  return Object.getOwnPropertyNames(object)
+},
+    
 
 
     functions: function() {
