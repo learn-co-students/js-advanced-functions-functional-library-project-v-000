@@ -35,12 +35,22 @@ const fi = (function() {
       return accumulator;
     },
 
-    find: function(collection, cb) {
+    find: function(collection, findCb) {
       const values = Object.values(collection);
 
       for(const val of values){
-         if (!!cb(val, values)) return val;
+         if (!!findCb(val, values)) return val;
       }
+    },
+
+    filter: function(collection, filterCb) {
+      const values = Object.values(collection);
+      const results = [];
+
+      for(const val of values){
+         if (!!filterCb(val, values)) results.push(val);
+      }
+      return results;
     },
 
     functions: function() {
