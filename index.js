@@ -71,6 +71,12 @@ const fi = (function() {
       return this.filter(array, elem=>!!elem);
     },
 
+    keys: function(obj) {
+      let props = Object.getOwnPropertyNames(obj)
+      return this.filter(props, elem=>obj.propertyIsEnumerable(elem));
+    },
+
+
     functions: function() {
 
     },
