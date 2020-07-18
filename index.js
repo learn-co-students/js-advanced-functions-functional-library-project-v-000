@@ -35,6 +35,14 @@ const fi = (function() {
       return accumulator;
     },
 
+    find: function(collection, cb) {
+      const values = Object.values(collection);
+
+      for(const val of values){
+         if (!!cb(val, values)) return val;
+      }
+    },
+
     functions: function() {
 
     },
