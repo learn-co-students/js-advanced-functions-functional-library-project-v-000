@@ -5,7 +5,7 @@ const fi = (function() {
     },
 
     each: function(collection, cb) {
-      const keys = Object.keys(collection);
+      const keys = this.keys(collection);
 
       for(const key of keys){
         cb(collection[key],key,collection);
@@ -15,7 +15,7 @@ const fi = (function() {
     },
 
     map: function(collection, cb) {
-      const keys = Object.keys(collection);
+      const keys = this.keys(collection);
       const collectionCopy = [];
 
       for(const key of keys){
@@ -74,6 +74,14 @@ const fi = (function() {
     keys: function(obj) {
       let props = Object.getOwnPropertyNames(obj)
       return this.filter(props, elem=>obj.propertyIsEnumerable(elem));
+    },
+
+    values: function(obj) {
+      let values = [];
+      for(const prop of this.keys(obj)){
+        values.push(obj[prop])
+      }
+      return values;
     },
 
 
