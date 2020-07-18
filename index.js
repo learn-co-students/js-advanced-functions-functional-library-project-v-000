@@ -23,12 +23,16 @@ const fi = (function() {
       }
 
       return collectionCopy;
-
-
     },
 
-    reduce: function() {
+    reduce: function(collection, cb, acc) {
+      const values = Object.values(collection);
+      let accumulator = !!acc? acc : values.shift();
 
+      for(const val of values){
+        accumulator = cb(accumulator, val, values);
+      }
+      return accumulator;
     },
 
     functions: function() {
