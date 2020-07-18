@@ -64,7 +64,11 @@ const fi = (function() {
 
     last: function(array, n) {
       const copyOfArray = [...array];
-      return (!!n?copyOfArray.slice(-n):copyOfArray[-1]);
+      return !!n?copyOfArray.slice(-n):copyOfArray.slice(-1)[0];
+    },
+
+    compact: function(array) {
+      return this.filter(array, elem=>!!elem);
     },
 
     functions: function() {
