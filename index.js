@@ -57,6 +57,12 @@ const fi = (function() {
       return Object.values(collection).length;
     },
 
+    first: function(array, n) {
+      const copyOfArray = [...array];
+
+      return (!!n?copyOfArray.slice(0,n):copyOfArray[0]);
+    },
+
     functions: function() {
 
     },
