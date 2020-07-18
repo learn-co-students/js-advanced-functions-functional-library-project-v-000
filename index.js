@@ -5,7 +5,7 @@ const fi = (function() {
     },
 
     each: function(collection, cb) {
-      const keys = this.keys(collection);
+      const keys = Object.keys(collection);
 
       for(const key of keys){
         cb(collection[key],key,collection);
@@ -15,7 +15,7 @@ const fi = (function() {
     },
 
     map: function(collection, cb) {
-      const keys = this.keys(collection);
+      const keys = Object.keys(collection);
       const collectionCopy = [];
 
       for(const key of keys){
@@ -70,6 +70,12 @@ const fi = (function() {
     compact: function(array) {
       return this.filter(array, elem=>!!elem);
     },
+
+    sortBy: function(array, sortingCb) {
+      const copyOfArray = [...array]
+      return copyOfArray.sort(function(a, b){return sortingCb(a) - sortingCb(b)});
+    },
+
 
     keys: function(obj) {
       let props = [];
