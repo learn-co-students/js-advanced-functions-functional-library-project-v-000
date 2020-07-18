@@ -72,13 +72,16 @@ const fi = (function() {
     },
 
     keys: function(obj) {
-      let props = Object.getOwnPropertyNames(obj)
-      return this.filter(props, elem=>obj.propertyIsEnumerable(elem));
+      let props = [];
+      for(const prop in obj){
+        props.push(prop)
+      }
+      return props;
     },
 
     values: function(obj) {
       let values = [];
-      for(const prop of this.keys(obj)){
+      for(const prop in obj){
         values.push(obj[prop])
       }
       return values;
