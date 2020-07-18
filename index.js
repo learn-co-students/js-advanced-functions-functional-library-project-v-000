@@ -53,6 +53,10 @@ const fi = (function() {
       return results;
     },
 
+    size: function(collection) {
+      return Object.values(collection).length;
+    },
+
     functions: function() {
 
     },
