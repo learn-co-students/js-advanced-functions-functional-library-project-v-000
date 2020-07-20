@@ -77,17 +77,23 @@ const fi = (function() {
       return copyOfArray.sort(function(a, b){return sortingCb(a) - sortingCb(b)});
     },
 
-    flatten: function(array, singleLevel) {
+    flatten: function(array, singleLevel, newAry=[], depth=1) {
       if(!!singleLevel){
-        const singleLevelAry = [];
         for (const elem of array){
-          Array.isArray(elem)? this.each(elem, nestedElem => singleLevelAry.push(nestedElem)): singleLevelAry.push(elem);
+          (Array.isArray(elem) && depth<2)? this.flatten(elem,true,newAry, depth+1):newAry.push(elem);
         }
-        return singleLevelAry;
       }else{
-        return this.map(array.toString().split(","), str=>parseInt(str));
+        for (const elem of array){
+          (Array.isArray(elem))? this.flatten(elem,false,newAry, depth+1):newAry.push(elem);
+        }
       }
+      return newAry;
     },
+
+    uniq: function(array, [isSorted], [callback]){
+
+    },
+
 
     keys: function(obj) {
       let props = [];
