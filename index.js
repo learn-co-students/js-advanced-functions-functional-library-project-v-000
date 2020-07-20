@@ -65,6 +65,7 @@ const fi = (function() {
     last: function(array, n) {
       const copyOfArray = [...array];
       return !!n?copyOfArray.slice(-n):copyOfArray.slice(-1)[0];
+
     },
 
     compact: function(array) {
@@ -76,6 +77,13 @@ const fi = (function() {
       return copyOfArray.sort(function(a, b){return sortingCb(a) - sortingCb(b)});
     },
 
+    flatten: function(array, singleLevel) {
+      if(!!singleLevel){
+
+      }else{
+        return this.map(array.toString().split(","), str=>parseInt(str));
+      }
+    },
 
     keys: function(obj) {
       let props = [];
