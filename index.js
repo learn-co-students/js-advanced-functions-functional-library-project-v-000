@@ -79,7 +79,15 @@ const fi = (function() {
 
     flatten: function(array, singleLevel) {
       if(!!singleLevel){
-
+        const singleLevelAry = [];
+        for (const elem of array){
+          if (Array.isArray(elem)){
+            this.each(elem, nestedElem => singleLevelAry.push(nestedElem))
+          }else{
+            singleLevelAry.push(elem);
+          }
+        }
+        return singleLevelAry;
       }else{
         return this.map(array.toString().split(","), str=>parseInt(str));
       }
