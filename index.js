@@ -81,11 +81,7 @@ const fi = (function() {
       if(!!singleLevel){
         const singleLevelAry = [];
         for (const elem of array){
-          if (Array.isArray(elem)){
-            this.each(elem, nestedElem => singleLevelAry.push(nestedElem))
-          }else{
-            singleLevelAry.push(elem);
-          }
+          Array.isArray(elem)? this.each(elem, nestedElem => singleLevelAry.push(nestedElem)): singleLevelAry.push(elem);
         }
         return singleLevelAry;
       }else{
