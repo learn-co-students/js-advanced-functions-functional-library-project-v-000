@@ -90,8 +90,14 @@ const fi = (function() {
       return newAry;
     },
 
-    uniq: function(array, [isSorted], [callback]){
-
+    uniq: function(array, isSorted, cb, uniqValues=[]){
+      const newAry = [...array];
+      uniqValues.push(newAry.shift());
+      for (const [id,elem] of newAry.entries()){
+        if (this.last(uniqValues) === elem) delete newAry[id];
+      }
+      if(this.compact(newAry).length>0) this.uniq(this.compact(newAry),false, cb, uniqValues);
+      return uniqValues;
     },
 
 
@@ -112,8 +118,14 @@ const fi = (function() {
     },
 
 
-    functions: function() {
-
+    functions: function(obj) {
+      const fncNames = []
+      for (let key in obj) {
+        if (typeof obj[key] === "function"){
+          fncNames.push(key)
+        }
+      }
+      return fncNames.sort();
     },
 
 
