@@ -5,21 +5,21 @@ const fi = (function() {
     },
 
     each: function(collection, cb) {
-      const keys = Object.keys(collection);
+      const entries = Object.entries(collection);
 
-      for(const key of keys){
-        cb(collection[key],key,collection);
+      for(const [key,val] of entries){
+        cb(val,key,collection);
       }
 
       return collection;
     },
 
     map: function(collection, cb) {
-      const keys = Object.keys(collection);
+      const entries = Object.entries(collection);
       const collectionCopy = [];
 
-      for(const key of keys){
-        collectionCopy.push(cb(collection[key],key,collection));
+      for(const [key,val] of entries){
+        collectionCopy.push(cb(val,key,collection));
       }
 
       return collectionCopy;
@@ -91,13 +91,22 @@ const fi = (function() {
     },
 
     uniq: function(array, isSorted, cb, uniqValues=[]){
-      const newAry = [...array];
-      uniqValues.push(newAry.shift());
-      for (const [id,elem] of newAry.entries()){
-        if (this.last(uniqValues) === elem) delete newAry[id];
+      let newAryOfObjs;
+      if(uniqValues.length === 0){
+        newAryOfObjs = this.map(array, (elem,id)=>{
+          return !!cb?{[elem]:cb(elem)}:{[id]:elem}
+        })
       }
-      if(this.compact(newAry).length>0) this.uniq(this.compact(newAry),false, cb, uniqValues);
-      return uniqValues;
+      else{
+        newAryOfObjs = array;
+      }
+
+      uniqValues.push(newAryOfObjs.shift());
+      newAryOfObjs = this.filter(newAryOfObjs, elem=>Object.values(this.last(uniqValues))[0] !== Object.values(elem)[0] )
+
+      if(newAryOfObjs.length>0) this.uniq(newAryOfObjs,isSorted, cb, uniqValues);
+
+      return !!cb? this.flatten(this.map(uniqValues, elem=>parseInt(Object.keys(elem)))):this.flatten(this.map(uniqValues, elem=>Object.values(elem)));
     },
 
 
