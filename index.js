@@ -108,7 +108,7 @@ const fi = (function () {
 
     size: function(collection) {
       if (typeof collection === "object") {
-        var collection_keys = collection.keys
+        var collection_keys = Object.keys(collection)
         return collection_keys.length
       }
       else {
@@ -116,10 +116,148 @@ const fi = (function () {
        }
     },
 
+    first: function(array, n = null) {
+      var new_array = []
+      if (n !== null) {
+        for (var i = 0; i < n; i++) {
+          new_array.push(array[i])
+        }
+        return new_array
+      }
+      else {
+        return array[0]
+      }
+    },
+
+    last: function(array, n = null) {
+      var new_array = []
+      var last = array.length - 1
+      var total_cycles = last - n
+      //console.log(array)
+      if (n !== null) {
+        for (var i = last; i > total_cycles; i--) {
+          //console.log(array[i])
+          new_array.unshift(array[i])
+        }
+        //console.log(new_array)
+        return new_array
+      }
+      else {
+        return array[last]
+      }
+    },
+
+    compact: function (array) {
+      //console.log(array)
+      var new_array = []
+      //console.log(NaN === NaN)
+      for (var i = 0; i < array.length; i++) { //https://stackoverflow.com/questions/22600248/is-nan-falsy-why-nan-false-returns-false/22600338 FOR THE NaN
+        if ((array[i] && "dog") !== array[i]) {
+          if (!(Object.is(array[i],NaN))) {
+            new_array.push(array[i])
+          }
+        } 
+      }
+      //console.log(new_array)
+      return new_array
+    },
+
+    sortBy: function (array, callback) {
+      //console.log(array)
+      //console.log(callback)
+      var new_array = Object.assign([],array) //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign dryer
+      //var new_array = array
+      //js problem solved with Object.assign ^ JS believes you're modifying the original array keeping from being a pure function
+      //aka the side effects mentioned of not being a pure function
+
+      //console.log(new_array.sort((a,b) => (callback(a)-callback(b)))) //subtraction is the comparison
+      //check indexTest 195-197 callback checks the typeof each element
+      return new_array.sort((a,b) => (callback(a)-callback(b))) 
+    }, //callback is what determines the nonstandard sort, also by passing the need for an if else 
+
+    flatten: function (array, shallow) { //readme said 
+      //console.log(array)
+      //console.log(shallow)
+      var ret = [];
+      if (shallow === true) {
+        for(var i = 0; i < array.length; i++) {
+          if(Array.isArray(array[i])) {
+             for(var j = 0; j < array[i].length; j++) {
+               ret.push(array[i][j]); //pushing the array in the array - Kevin
+             } 
+              
+          } else {
+              ret.push(array[i]);
+          }
+      } 
+      } else {
+        for(var i = 0; i < array.length; i++) {
+          if(Array.isArray(array[i])) {
+              ret = ret.concat(this.flatten(array[i])); // "this" is need is needed. this is like self 
+              //flatten was undefined outside the object, so we had to refference the object with "this"
+              //https://learn.co/tracks/full-stack-web-development-v8/module-14-front-end-web-programming-in-javascript/section-9-advanced-function-usage/js-advanced-functions-context-and-implicit-setting
+          } else {
+              ret.push(array[i]);
+          }
+      } 
+      }
+      //console.log(ret)
+      return ret;
+    },
+
+    uniq: function(collection, sorted=false, iteratee=false) {
+      if (sorted) {
+        return fi.uniqSorted(collection, iteratee)
+      } else if (!iteratee) {
+        return Array.from(new Set(collection))
+      } else {
+        const modifiedVals = new Set()
+        const uniqVals = new Set()
+        for (let val of collection) {
+          const moddedVal = iteratee(val)
+          if (!modifiedVals.has(moddedVal)) {
+            modifiedVals.add(moddedVal)
+            uniqVals.add(val)
+          }
+        }
+        return Array.from(uniqVals)
+      }
+    },
+
+    keys: function(object) {
+      console.log(Object.entries(object))
+      var return_array = []
+      var object_array = Object.entries(object)
+      for (var i = 0; i < object_array.length; i++) {
+        return_array.push(object_array[i][0])
+      }
+      return return_array;
+    },
+
+    values: function(object) {
+      console.log(Object.entries(object))
+      var return_array = []
+      var object_array = Object.entries(object)
+      for (var i = 0; i < object_array.length; i++) {
+        return_array.push(object_array[i][1])
+      }
+      return return_array;
+    },
 
 
-    functions: function () {},
+    functions: function (object) {
+      //console.log(object) // "cmd /" does multiple lines at a time of commenting" 
+      console.log(Object.entries(object))
+      var return_array = []
+      var object_array = Object.entries(object)
+      for (var i = 0; i < object_array.length; i++) {
+        if (typeof object_array[i][1] == "function") {
+         return_array.push(object_array[i][0])
+        }
+      }
+      return return_array;
+    },
   };
 })();
-
+ 
 fi.libraryMethod();
