@@ -93,33 +93,18 @@ const fi = (function() {
     },
 
     sortBy: function(array, callback) {
-
-      // let placeholder = []
-      // for(let i = 0; i < array.length; i++){
-      //   placeholder.push(callback(array[i]))
-      // }
-      // placeholder.sort()
-      //
-      // return placeholder
-
-      // var points = [40, 100, 1, 5, 25, 10];
-      // points.sort(function(a, b){return b - a});
-
       let placeholder = array.slice()
-console.log("placeholder= ", placeholder)
-      placeholder.sort(
-        compare(a, b) {
-          if (callback(a) < callback(b)) {
-            return -1;
-          }
-          if (callback(a) > callback(b)) {
-            return 1;
-          }
-          // a must be equal to b
-          return 0;
+      let compare = function(a, b) {
+        if (callback(a) < callback(b)) {
+          return -1;
         }
-      )
-console.log("placeholder= ", placeholder)
+        if (callback(a) > callback(b)) {
+          return 1;
+        }
+        return 0;
+      }
+
+      placeholder.sort(compare(a, b))
 
       return placeholder
     },
