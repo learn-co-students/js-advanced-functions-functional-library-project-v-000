@@ -107,10 +107,21 @@ const fi = (function() {
 
       let placeholder = array.slice()
 console.log("placeholder= ", placeholder)
-      placeholder.sort(callback())
+      placeholder.sort(
+        compare(a, b) {
+          if (callback(a) < callback(b)) {
+            return -1;
+          }
+          if (callback(a) > callback(b)) {
+            return 1;
+          }
+          // a must be equal to b
+          return 0;
+        }
+      )
 console.log("placeholder= ", placeholder)
-      return placeholder
 
+      return placeholder
     },
 
     flatten: function(array, shallow) {
