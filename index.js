@@ -94,17 +94,18 @@ const fi = (function() {
 
     sortBy: function(array, callback) {
       let placeholder = array.slice()
-      let compare = function(a, b) {
-        if (callback(a) < callback(b)) {
-          return -1;
-        }
-        if (callback(a) > callback(b)) {
-          return 1;
-        }
-        return 0;
-      }
 
-      placeholder.sort(compare(a, b))
+      for(let i = 1; i < placeholder.length; i++){
+        placeholder.sort(function(a, b) {
+          if (callback(a) < callback(b)) {
+            return -1;
+          }
+          if (callback(a) > callback(b)) {
+            return 1;
+          }
+          return 0;
+        })
+      }
 
       return placeholder
     },
@@ -114,7 +115,22 @@ const fi = (function() {
     },
 
     uniq: function(array, isSorted, callback) {
-
+      if(callback == undefined){
+        return array.filter(function(value, index, self){
+          return self.indexOf(value) === index;
+        })
+      }
+      else {
+        return array.filter(function(value, index, self){
+          let foundUniq = true;
+          for(let i = index-1; i >= 0; i--){
+            if(callback(value) == callback(self[i])){
+              foundUniq = false;
+            }
+          }
+          return foundUniq;
+        })
+      }
     },
 
     keys: function(object) {
