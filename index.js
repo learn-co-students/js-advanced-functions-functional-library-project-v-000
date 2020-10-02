@@ -134,7 +134,7 @@ const fi = (function() {
     },
 
     keys: function(object) {
-
+      return object.keys
     },
 
     values: function(object) {
