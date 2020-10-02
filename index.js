@@ -111,7 +111,35 @@ const fi = (function() {
     },
 
     flatten: function(array, shallow) {
+      let ans = []
+      if (shallow){
+        for(let i = 0; i < array.length; i++){
+          if (Array.isArray(array[i])){
+            for(let j = 0; j < array[i].length; j++){
+              ans.push(array[i][j])
+            }
+          }
+          else{
+            ans.push(array[i])
+          }
+        }
+      }
+      else{
+        let newArr = array;
+        function flattenHelper(newArr){
+          for(let i = 0; i < newArr.length; i++){
+            if(Array.isArray(newArr[i])){
+              flattenHelper(newArr[i])
+            }
+            else {
+              ans.push(newArr[i])
+            }
+          }
+        }
+        flattenHelper(newArr)
+      }
 
+      return ans;
     },
 
     uniq: function(array, isSorted, callback) {
@@ -134,15 +162,23 @@ const fi = (function() {
     },
 
     keys: function(object) {
-      return object.keys
+      return Object.keys(object)
     },
 
     values: function(object) {
-
+      return Object.values(object)
     },
 
     functions: function(object) {
+      let entries = Object.entries(object)
+      let ans = []
 
+      for (let i = 0; i < entries.length; i++){
+        if (typeof entries[i][1] == "function"){
+          ans.push(entries[i][0])
+        }
+      }
+      return ans.sort()
     },
 
   }
