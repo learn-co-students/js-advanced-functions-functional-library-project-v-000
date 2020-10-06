@@ -116,17 +116,45 @@ const fi = (function() {
       })
     },
 
-    flatten: function(collection, shallow, newArr=[]) {
-      if (!Array.isArray(collection)) return newArr.push(collection)
+    // flatten: function(collection, shallow, newArr=[]) {
+    //   if (!Array.isArray(collection)) return newArr.push(collection)
+    //   if (shallow) {
+    //     for (let val of collection)
+    //       Array.isArray(val) ? this.unpack(newArr, val) : newArr.push(val)
+    //   } else {
+    //     for (let val of collection) {
+    //       this.flatten(val, false, newArr)
+    //     }
+    //   }
+    //   return newArr
+    // },
+
+    flatten: function(array, shallow) {
+      let ans = []
       if (shallow) {
-        for (let val of collection)
-          Array.isArray(val) ? this.unpack(newArr, val) : newArr.push(val)
-      } else {
-        for (let val of collection) {
-          this.flatten(val, false, newArr)
+        for (let i = 0; i < array.length; i++) {
+          if (Array.isArray(array[i])) {
+            for (let j = 0; j < array[i].length; j++) {
+              ans.push(array[i][j])
+            }
+          } else {
+            ans.push(array[i])
+          }
         }
+      } else {
+        let newArr = array;
+        function flattenHelper(newArr) {
+          for (let i = 0; i < newArr.length; i++) {
+            if (Array.isArray(newArr[i])) {
+              flattenHelper(newArr[i])
+            } else {
+              ans.push(newArr[i])
+            }
+          }
+        }
+        flattenHelper(newArr)
       }
-      return newArr
+      return ans;
     },
 
     uniqSorted: function(collection, iteratee) {
