@@ -5,8 +5,10 @@ const fi = (function() {  //wrap entire library in IIFE
     },
 
     each: function(arr, call) {
-           i = 0 
-           a = arr[i] 
+           let i = 0 
+           let a = arr[i]
+           let length = arr.length
+            
       let call = function(a, i, arr) { 
 
       }
