@@ -1,10 +1,15 @@
-const fi = (function() {
+const fi = (function() {  //wrap entire library in IIFE
   return {
     libraryMethod: function() {
       return 'Start by reading https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0'
     },
 
-    each: function() {
+    each: function(arr, call) {
+           i = 0 
+           a = arr[i] 
+      let call = function(a, i, arr) { 
+
+      }
 
     },
 
