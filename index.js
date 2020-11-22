@@ -23,7 +23,23 @@ const fi = (function() {  //wrap entire library in IIFE
   },
 
 
-    map: function() {
+    map: function(collection, callback) {
+      let newCollection = []
+      if (Array.isArray(collection)) {
+      for (let i = 0; i < collection.length; i++) {
+        let a = collection[i]
+        newCollection.push(callback(a, i, collection)) 
+      }
+    }
+      else {
+       let keys = Object.keys(collection)
+      for (let i = 0; i < keys.length; i++) {
+        let k = keys[i]
+        let v = collection[k]
+        newCollection.push(callback(v, k, collection))
+      }
+    }
+      return newCollection 
 
     },
 
