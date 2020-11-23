@@ -97,7 +97,37 @@ const fi = (function() {  //wrap entire library in IIFE
         } 
     },
 
-    compact: function() {
+    compact: function(array) {
+      let newArray = []
+      for (let i = 0; i < array.length; i++) {
+        if (!!array[i]) {
+          newArray.push(array[i])
+        } 
+      }
+      return newArray
+    },
+
+    sortBy: function(array, calback) {
+
+    },
+
+    flatten: function() {
+
+    },
+
+    uniq: function() {
+
+    },
+
+    keys: function() {
+
+    },
+
+    values: function() {
+
+    },
+
+    functions: function() {
 
     },
 
