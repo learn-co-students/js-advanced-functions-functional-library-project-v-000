@@ -82,10 +82,23 @@ const fi = (function() {  //wrap entire library in IIFE
     first: function(array, n) { 
         if (typeof n !== 'undefined') {
           return array.slice(0, n)
-          return result 
         } else {
           return array[0]
         } 
+    },
+
+    last: function(array, n) {
+      if (typeof n !== 'undefined') {
+        let newArray = array.slice(-n, array.length)
+          return newArray
+        } else {
+          let newDigit = array.length - 1
+          return array[newDigit]
+        } 
+    },
+
+    compact: function() {
+
     },
 
 
