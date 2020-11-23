@@ -26,7 +26,7 @@ const fi = (function() {  //wrap entire library in IIFE
     map: function(collection, callback) {
       let newCollection = []
       if (Array.isArray(collection)) {
-      for (let i = 0; i < collection.length; i++) {
+          for (let i = 0; i < collection.length; i++) {
         let a = collection[i]
         newCollection.push(callback(a, i, collection)) 
       }
@@ -40,15 +40,22 @@ const fi = (function() {  //wrap entire library in IIFE
       }
     }
       return newCollection 
-
     },
 
-    reduce: function() {
 
+    reduce: function(col, callback = () => {}, acc = -2) {
+     let myAcc = acc;
+       for (let i = 0; i < col.length; i++) {
+        myAcc = callback(myAcc, col[i], col)  //returns value times three plus acc 
+      }
+      return myAcc 
     },
 
-    functions: function() {
-
+    functions: function(collection, predicate) {
+      for (let i = 0; i < collection.length; i++) {
+        if (collection == undefined) {
+          
+        }
     },
 
 
