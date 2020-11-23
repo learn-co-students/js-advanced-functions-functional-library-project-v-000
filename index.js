@@ -43,7 +43,7 @@ const fi = (function() {  //wrap entire library in IIFE
     },
 
 
-    reduce: function(col, callback = () => {}, acc = -2) {
+    reduce: function(col, callback, acc = -2) {
      let myAcc = acc;
        for (let i = 0; i < col.length; i++) {
         myAcc = callback(myAcc, col[i], col)  //returns value times three plus acc 
@@ -51,11 +51,17 @@ const fi = (function() {  //wrap entire library in IIFE
       return myAcc 
     },
 
-    functions: function(collection, predicate) {
-      for (let i = 0; i < collection.length; i++) {
-        if (collection == undefined) {
-          
+    find: function(collection, predicate) {  //return first one passing predicate test or undefined if nothing passes 
+       let i = 0                              //check if first element passes predicate test 
+       if (collection[i] === "true") {     //if does not pass grab next element and check, repeat
+          return collection[i]                     //if it does pass, return that element value 
+        } else {
+        for (let i = 0; i < collection.length; i++) {
         }
+    },
+
+    functions: function() {
+
     },
 
 
