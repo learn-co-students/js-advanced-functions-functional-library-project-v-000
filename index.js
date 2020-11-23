@@ -79,8 +79,13 @@ const fi = (function() {  //wrap entire library in IIFE
     },
 
 
-    functions: function() {
-
+    first: function(array, n) { 
+        if (typeof n !== 'undefined') {
+          return array.slice(0, n)
+          return result 
+        } else {
+          return array[0]
+        } 
     },
 
 
