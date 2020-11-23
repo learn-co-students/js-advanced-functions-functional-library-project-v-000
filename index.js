@@ -52,13 +52,32 @@ const fi = (function() {  //wrap entire library in IIFE
     },
 
     find: function(collection, predicate) {  //return first one passing predicate test or undefined if nothing passes 
-       let i = 0                              //check if first element passes predicate test 
-       if (collection[i] === "true") {     //if does not pass grab next element and check, repeat
-          return collection[i]                     //if it does pass, return that element value 
-        } else {
-        for (let i = 0; i < collection.length; i++) {
-        }
+      for (let i = 0; i < collection.length; i++) {   //check if first element passes predicate test 
+       if (predicate(collection[i])) {                    //if does not pass grab next element and check, repeat
+          return collection[i] 
+          break                                //if it does pass, return that element value 
+      }
+     }
     },
+
+    filter: function(collection, predicate) {
+    let newArray = []
+     for (let i = 0; i < collection.length; i++) {
+      if(predicate(collection[i])) {
+        newArray.push(collection[i])
+      }
+     }
+     return newArray
+    },
+
+    size: function(collection) {
+      if (Array.isArray(collection)) {
+        return collection.length
+      } else if (typeof(collection) === 'object') {
+        return Object.keys(collection).length
+      }
+    },
+
 
     functions: function() {
 
