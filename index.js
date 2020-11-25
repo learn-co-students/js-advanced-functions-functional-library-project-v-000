@@ -107,8 +107,16 @@ const fi = (function() {  //wrap entire library in IIFE
       return newArray
     },
 
-    sortBy: function(array, calback) {
-
+    sortBy: function(array, callback) { 
+        let newArray = array.map(function(a) {
+            return callback(a)
+        })
+        
+        if (!!newArray.reduce((n, item) => n !== false && item >= n && item)) {
+          return newArray.sort(function(a, b){return b - a}) 
+        } else {
+          return newArray.sort(function(a, b){return a - b}) 
+        }
     },
 
     flatten: function() {
