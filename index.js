@@ -113,26 +113,31 @@ const fi = (function() {  //wrap entire library in IIFE
       return finalArray
     },
 
-    flatten: function(array, boolean) {
-      //if (boolean) {
-        //array.
-      //}
+    flatten: function(array, boolean) { 
+      if (typeof boolean !== 'undefined') { //concat
+        return [].concat.apply([], array)
+      } else {
+       let flattenedArray = function(array) {
+         return array.reduce((acc, cur) => 
+          acc.concat(Array.isArray(cur) ? flattenedArray(cur) : cur), []);
+       }
+        return flattenedArray(array)
+      }
+    },
+
+    uniq: function(array, isSorted, callback) {
 
     },
 
-    uniq: function() {
+    keys: function(object) {
 
     },
 
-    keys: function() {
+    values: function(object) {
 
     },
 
-    values: function() {
-
-    },
-
-    functions: function() {
+    functions: function(object) {
 
     },
 
