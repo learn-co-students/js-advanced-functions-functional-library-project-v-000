@@ -112,14 +112,17 @@ const fi = (function() {  //wrap entire library in IIFE
             return callback(a)
         })
         
-        if (!!newArray.reduce((n, item) => n !== false && item >= n && item)) {
+        if (!newArray) {
           return newArray.sort(function(a, b){return b - a}) 
         } else {
           return newArray.sort(function(a, b){return a - b}) 
         }
     },
 
-    flatten: function() {
+    flatten: function(array, boolean) {
+      if (boolean) {
+        array.
+      }
 
     },
 
