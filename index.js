@@ -125,8 +125,15 @@ const fi = (function() {  //wrap entire library in IIFE
       }
     },
 
-    uniq: function(array, isSorted, callback) {
+    uniq: function(array, isSorted, callback) {  //duplicate free version of array 
+      //is array sorted? isSorted = true 
+      //callback is for transformation of values
+      if (typeof isSorted !== 'undefined') {
 
+      } else {
+
+      }
+      return array 
     },
 
     keys: function(object) {
