@@ -150,7 +150,7 @@ const fi = (function() {  //wrap entire library in IIFE
     },
 
     keys: function(object) {
-
+      return getOwnPropertyNames(object)
     },
 
     values: function(object) {
