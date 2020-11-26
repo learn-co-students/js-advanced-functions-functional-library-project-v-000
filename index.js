@@ -131,8 +131,8 @@ const fi = (function() {  //wrap entire library in IIFE
       if (typeof isSorted !== 'undefined') {
         let singularArray = function removeDuplicates(array) {
           return (new Set(a)).size !== a.length;
+          return singularArray(array)
     }
-      return singularArray(array)
       } else {
 
       }
