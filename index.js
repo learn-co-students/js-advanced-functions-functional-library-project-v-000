@@ -129,18 +129,24 @@ const fi = (function() {  //wrap entire library in IIFE
       //is array sorted? isSorted = true 
       //callback is for transformation of values
       //let duplicateValues = []
-    if (typeof isSorted == 'undefined') {
+     if (typeof isSorted == 'undefined') {
       let removeDuplicates = function(array) {
         [...new Set(array)];
        array.filter((item, index) => array.indexOf(item) === index);
        return array.reduce((unique, item) => 
        unique.includes(item) ? unique : [...unique, item], []);
+      }
+       return removeDuplicates(array)
+     } else {
+      let removeDuplicates = function(array, callback) {
+       let duplicateArray = [...array]
+       let newArray = duplicateArray.sort(function(a, b){return callback(a) - callback(b)})
+       //let filteredArray = newArray.filter((item, index) => array.indexOf(item) === index);
+       return newArray.reduce((unique, item) => 
+       unique.includes(item) ? unique : [...unique, item], []);
+      }
+       return removeDuplicates(array, callback);
      }
-      return removeDuplicates(array)
-    }
-    //} else {
-
-      //}
     },
 
     keys: function(object) {
