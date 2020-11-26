@@ -129,11 +129,13 @@ const fi = (function() {  //wrap entire library in IIFE
       //is array sorted? isSorted = true 
       //callback is for transformation of values
       if (typeof isSorted !== 'undefined') {
-
+        let singularArray = function removeDuplicates(array) {
+          return (new Set(a)).size !== a.length;
+    }
+      return singularArray(array)
       } else {
 
       }
-      return array 
     },
 
     keys: function(object) {
