@@ -128,14 +128,19 @@ const fi = (function() {  //wrap entire library in IIFE
     uniq: function(array, isSorted, callback) {  //duplicate free version of array 
       //is array sorted? isSorted = true 
       //callback is for transformation of values
-      if (typeof isSorted !== 'undefined') {
-        let singularArray = function removeDuplicates(array) {
-          return (new Set(a)).size !== a.length;
-          return singularArray(array)
+      //let duplicateValues = []
+    if (typeof isSorted == 'undefined') {
+      let removeDuplicates = function(array) {
+        [...new Set(array)];
+       array.filter((item, index) => array.indexOf(item) === index);
+       return array.reduce((unique, item) => 
+       unique.includes(item) ? unique : [...unique, item], []);
+     }
+      return removeDuplicates(array)
     }
-      } else {
+    //} else {
 
-      }
+      //}
     },
 
     keys: function(object) {
