@@ -169,27 +169,14 @@ const fi = (function() {  //wrap entire library in IIFE
     },
 
     functions: function(object) {
-      //let newArray = []
-      let finalArray = []
-      //for (const prop in object) {
-        //if (object.hasOwnProperty(prop)) {
-          //newArray.push(object)
-          //console.log(newArray) 
-      //}  
-    //}
-      //for (const element of newArray) {
-        //if (element == null)
-          //finalArray.push(element)
-            //console.log(finalArray)
-      //}
-      Object.getOwnPropertyNames(object).forEach(key => {
-        let value = object[key]
-        if (value == null) {
-          console.log(value)
-        }
+        let finalArray = []
+      Object.keys(object).forEach(key => {   //returns array of keys 
+         if (typeof object[key] === 'function') {
+          finalArray.push(object[key])
+         }
       })
-        return finalArray
-  }
+      return finalArray
+  },
 
 
   }
