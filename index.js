@@ -129,10 +129,10 @@ const fi = (function() {  //wrap entire library in IIFE
       //is array sorted? isSorted = true 
       //callback is for transformation of values
       //let duplicateValues = []
-     if (typeof isSorted == 'undefined') {
+     if (isSorted === true) {
       let removeDuplicates = function(array) {
-        [...new Set(array)];
-       array.filter((item, index) => array.indexOf(item) === index);
+        //[...new Set(array)];
+       //array.filter((item, index) => array.indexOf(item) === index);
        return array.reduce((unique, item) => 
        unique.includes(item) ? unique : [...unique, item], []);
       }
@@ -140,26 +140,56 @@ const fi = (function() {  //wrap entire library in IIFE
      } else {
       let removeDuplicates = function(array, callback) {
        let duplicateArray = [...array]
-       let newArray = duplicateArray.sort(function(a, b){return callback(a) - callback(b)})
-       //let filteredArray = newArray.filter((item, index) => array.indexOf(item) === index);
-       return newArray.reduce((unique, item) => 
-       unique.includes(item) ? unique : [...unique, item], []);
+       if (!!callback) {
+        let set = {}
+        return duplicateArray.reduce((unique, item) => {
+          if (!!set[callback(item)]) {
+             return unique
+          } else {
+             set[callback(item)] = true 
+             return [...unique, item]
+          } 
+        }
+           ,[])
+       } else {
+         return array.reduce((unique, item) => 
+         unique.includes(item) ? unique : [...unique, item], [])
+       }
       }
        return removeDuplicates(array, callback);
      }
     },
 
-    keys: function(object) {
-      return getOwnPropertyNames(object)
+    keys: function(object) { //all enumerable properties
+      return Object.getOwnPropertyNames(object)
     },
 
-    values: function(object) {
-
+    values: function(object) { //all values of object
+      return Object.values(object)
     },
 
     functions: function(object) {
-
-    },
+      //let newArray = []
+      let finalArray = []
+      //for (const prop in object) {
+        //if (object.hasOwnProperty(prop)) {
+          //newArray.push(object)
+          //console.log(newArray) 
+      //}  
+    //}
+      //for (const element of newArray) {
+        //if (element == null)
+          //finalArray.push(element)
+            //console.log(finalArray)
+      //}
+      Object.getOwnPropertyNames(object).forEach(key => {
+        let value = object[key]
+        if (value == null) {
+          console.log(value)
+        }
+      })
+        return finalArray
+  }
 
 
   }
