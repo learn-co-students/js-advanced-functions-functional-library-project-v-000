@@ -107,22 +107,32 @@ const fi = (function() {
       }
     },
 
-    uniq: function(array, isSorted, callback = (a) => a) {
-      const uniqueArray = [];
+    uniq: function(array, isSorted, callback = a => a) {
+      if (isSorted) {
+        const newArr = [array[0]]
+        for (let i = 1; i < array.length; i++) {
+          if (callback(array[i-1]) !== callback(array[i])) {
+            newArr.push(array[i])
+          }
+        }
+        return newArr
 
-      for (const element of array) {
-        let counter = 0;
-        for (const uniqElement of uniqueArray) {
-          if (callback(uniqElement) === callback(element)) {
-            counter++;
+      } else {
+        const uniqueArray = []
+        for (const element of array) {
+          let counter = 0;
+          for (const uniqElement of uniqueArray) {
+            if (callback(uniqElement) === callback(element)) {
+              counter++;
+            };
+          };
+          if (counter < 1) {
+            uniqueArray.push(element);
           };
         };
-        if (counter < 1) {
-          uniqueArray.push(element);
-        };
-      };
-
-      return uniqueArray;
+  
+        return uniqueArray;
+      }
     },
 
     // object functions
