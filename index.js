@@ -6,15 +6,22 @@ const fi = (function() {
 
     each: function(collection, callback) {
            //ask if  collection is array
-           const valuesCollection = Array.isArray(collection) ?  collection.slice() : Object.values(collection)
+           const valuesCollection = Array.isArray(collection) ?  collection.slice() : Object.values(collection)  //otra forma collection instanceof Array
            for (let i = 0; i < valuesCollection.length; i++)
            callback(valuesCollection[i])
 
       return collection
     },
 
-    map: function() {
+    map: function(collection, callback) {
+           if (!Array.isArray(collection)){ collection = Object.values(collection)} //curly brackets can go or not
 
+           const newArr = []
+
+            for (let i = 0; i< collection.length; i++)
+              newArr.push(callback(collection[i]))
+
+            return newArr
     },
 
     reduce: function() {
