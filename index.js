@@ -55,12 +55,27 @@ const fi = (function() {
         } else {
           undefined
         }
-      }//for  
+      }//for
     },
 
+//FILTER--------------------------------------------------------------------------------
+   filter: function(collection, predicate){
+     //if collection has objects
+       if (!(collection instanceof Array))
+        collection = Object.values(collection)
+
+       const newArr = []
+
+       for (let i = 0; i < collection.length; i++) {
+        if (predicate(collection[i])) newArr.push(collection[i])
+       }
+
+      return newArr
+
+   },
 
 
-//REDUCE--------------------------------------------------------------------------------
+
 //REDUCE--------------------------------------------------------------------------------
 //REDUCE--------------------------------------------------------------------------------
 //REDUCE--------------------------------------------------------------------------------
