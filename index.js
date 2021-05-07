@@ -74,9 +74,59 @@ const fi = (function() {
 
    },
 
+//SIZE--------------------------------------------------------------------------------
+
+size: function(collection){
+  return (collection instanceof Array) ? collection.length : Object.keys(collection).length
+
+},
 
 
-//REDUCE--------------------------------------------------------------------------------
+//FIRST--------------------------------------------------------------------------------
+
+ first: function(collection,n=false) {
+   return (n)?  collection.slice(0,n) : collection[0]
+ },
+
+//LAST--------------------------------------------------------------------------------
+last: function(collection,n=false) {
+  return (n)?  collection.slice(collection.length-n,collection.length) : collection[collection.length-1]
+},
+
+
+
+//COMPACT--------------------------------------------------------------------------------
+compact: function(collection){
+  let compactArray = []
+
+   for (const i of collection) {
+     if (!!i) {
+       compactArray.push(i)
+     }
+   }
+   return compactArray
+
+},
+
+
+//SORTBY--------------------------------------------------------------------------------
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+
+sortBy: function(array, callback){
+  const  newArray = [...array]
+ return newArray.sort(
+         function(a,b){
+            return callback(a) - callback(b)  // order by ascending, not sure why it works with strings
+         })
+},
+
+
+//FLATTEN--------------------------------------------------------------------------------
+
+
+
+
+
 //REDUCE--------------------------------------------------------------------------------
 //REDUCE--------------------------------------------------------------------------------
 
